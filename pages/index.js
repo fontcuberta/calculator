@@ -45,10 +45,10 @@ const Home = () => {
           <h1 className='title'>Cuantix Calculator!</h1>
           <h2>¡Hola! ¿Quieres saber cuánto podría costar tu medición? Contesta algunas preguntas y te enviaremos un presupuesto estimado.</h2>
           <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-
+            <h3>Háblanos un poco de tu empresa</h3>
             <div className ="selector">
               <InputLabel>
-                  ¿Cuál es el objetivo de la medición?
+                  Tu empresa es...
               </InputLabel>
               <FormControl>
                 <Select
@@ -56,20 +56,14 @@ const Home = () => {
                   value={measureGoal}
                   onChange={setMeasureGoal}
                 >
-                  <MenuItem value={"Influir en políticas públicas"}>
-                    Influir en políticas públicas
+                  <MenuItem value={"Multinacional / Corporación"}>
+                    Multinacional / Corporación
                   </MenuItem>
-                  <MenuItem value={"Tomar decisiones de inversión"}>
-                    Tomar decisiones de inversión
+                  <MenuItem value={"Empresa"}>
+                    Empresa
                   </MenuItem>
-                  <MenuItem value={"Levantar fondos"}>
-                    Levantar fondos
-                  </MenuItem>
-                  <MenuItem value={"Demostrar el retorno"}>
-                    Demostrar el retorno
-                  </MenuItem>
-                  <MenuItem value={"Conocer insights o necesidades"}>
-                    Conocer insights o necesidades
+                  <MenuItem value={"NGO"}>
+                    NGO
                   </MenuItem>
                 </Select>
                 <FormHelperText>
