@@ -1,15 +1,10 @@
-// import { NextApiRequest, NextApiResponse } from "next"
+import { NextApiRequest, NextApiResponse } from "next"
 
-
-/**
- * @param {NextApiRequest} req
- * @param {NextApiResponse} res
- */
-export default (req, res) => {
+export default (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method !== "POST") {
-        res.status(409).send()
+        res.status(409).send("Something")
     }
-    
+
     const body = JSON.parse(req.body)
     
     console.log("Tengo la respuesta en el lado del servidor", body)
