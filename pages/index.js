@@ -24,6 +24,13 @@ const Home = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(event.target)
+
+    fetch('http://localhost:3000/api/new-application', {
+      method: 'POST',
+      body: JSON.stringify({
+        payload: "Tus Vainas"
+      })
+    })
   };
   const toggleIfPsychometrics = () => {
     setIfPsychometrics(prev => !prev);
