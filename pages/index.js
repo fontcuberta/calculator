@@ -7,14 +7,13 @@ import { Switch, FormGroup, FormControlLabel, Slider, Typography } from "@materi
 
 const Home = () => {
   const [customerName, setCustomerName] = useState('')
+  const [companyType, setCompanyType] = useState('')
   const [customerLastname, setCustomerLastname] = useState('')
   const [customerEmail, setCustomerEmail] = useState('')
   const [customerPhone, setCustomerPhone] = useState('')
   const [customerCountry, setCustomerCountry] = useState('')
   const [numberOfOrganizations, setNumberOfOrganizations] = useState('')
   const [measureGoal, setMeasureGoal] = useState('')
-  const [ifPsychometrics, setIfPsychometrics] = useState(false)
-  const [ifOwnIndicators, setIfOwnIndicators] = useState(false)
 
   const marks = new Array(10)
     .fill(0)
@@ -59,25 +58,27 @@ const Home = () => {
               </InputLabel>
               <FormControl>
                 <Select
-                  id="measureGoal"
-                  value={measureGoal}
-                  onChange={setMeasureGoal}
+                  id="companyType"
+                  value={companyType}
+                  onChange={setCompanyType}
                 >
-                  <MenuItem value={"Multinacional / Corporación"}>
+                  <MenuItem value="Multinacional / Corporación">
                     Multinacional / Corporación
                   </MenuItem>
-                  <MenuItem value={"Empresa"}>
+                  <MenuItem value="Empresa">
                     Empresa
                   </MenuItem>
-                  <MenuItem value={"NGO"}>
+                  <MenuItem value="NGO">
                     NGO
                   </MenuItem>
                 </Select>
                 <FormHelperText>
-                  Escoge tu objetivo principal por el que quieres medir
+                  Selecciona la opción que mejor describe a tu empresa
                 </FormHelperText>
               </FormControl>
             </div>
+            <Divider />
+            <h3>Cuéntanos sobre tu medición</h3>
             <div className ="selector">
               <InputLabel>
                   ¿Cuál es el objetivo de la medición?
@@ -88,24 +89,24 @@ const Home = () => {
                   value={measureGoal}
                   onChange={setMeasureGoal}
                 >
-                  <MenuItem value={"Influir en políticas públicas"}>
+                  <MenuItem value="Influir en políticas públicas">
                     Influir en políticas públicas
                   </MenuItem>
-                  <MenuItem value={"Tomar decisiones de inversión"}>
+                  <MenuItem value="Tomar decisiones de inversión">
                     Tomar decisiones de inversión
                   </MenuItem>
-                  <MenuItem value={"Levantar fondos"}>
+                  <MenuItem value="Levantar fondos">
                     Levantar fondos
                   </MenuItem>
-                  <MenuItem value={"Demostrar el retorno"}>
+                  <MenuItem value="Demostrar el retorno">
                     Demostrar el retorno
                   </MenuItem>
-                  <MenuItem value={"Conocer insights o necesidades"}>
+                  <MenuItem value="Conocer insights o necesidades">
                     Conocer insights o necesidades
                   </MenuItem>
                 </Select>
                 <FormHelperText>
-                  Escoge tu objetivo principal por el que quieres medir
+                  Escoge el objetivo principal por el que quieres medir
                 </FormHelperText>
               </FormControl>
             </div>
@@ -119,36 +120,24 @@ const Home = () => {
                   value={numberOfOrganizations}
                   onChange={setNumberOfOrganizations}
                 >
-                  <MenuItem value={"Solo una (organización ejecutora)"}>
+                  <MenuItem value="Solo una (organización ejecutora)">
                     Solo una (organización ejecutora)
                   </MenuItem>
-                  <MenuItem value={"De 2 a 4"}>
+                  <MenuItem value="De 2 a 4">
                     De 2 a 4
                   </MenuItem>
-                  <MenuItem value={"5 a 10"}>
+                  <MenuItem value="5 a 10">
                     5 a 10
                   </MenuItem>
-                  <MenuItem value={"10 a 20"}>
+                  <MenuItem value="10 a 20">
                     10 a 20
                   </MenuItem>
-                  <MenuItem value={"Más de 20"}>
+                  <MenuItem value="Más de 20">
                     Más de 20
                   </MenuItem>
                 </Select>
               </FormControl>
             </div>
-            <FormGroup>
-              <FormControlLabel
-                control={<Switch checked={ifPsychometrics} onChange={toggleIfPsychometrics} />}
-                label="¿El proyecto busca impactar actitudes o comportamientos (en los beneficiarios) que deban ser medidos con escalas psicométricas?"
-              />
-            </FormGroup>
-            <FormGroup>
-              <FormControlLabel
-                control={<Switch checked={ifOwnIndicators} onChange={toggleIfOwnIndicators} />}
-                label="¿Requieres subir a la plataforma indicadores propios que hayan utilizado anteriormente?"
-              />
-            </FormGroup>
             <Typography id="discrete-slider-always" gutterBottom>
               ¿Cuántos proyectos quieres medir?
             </Typography>
