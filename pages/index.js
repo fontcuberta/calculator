@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import { makeStyles } from '@material-ui/core/styles';
 import { CssBaseline, Container, Divider, TextField } from "@material-ui/core";
 import { InputLabel, MenuItem, FormHelperText, FormControl, Select, Button } from "@material-ui/core";
-import { Switch, FormGroup, FormControlLabel, Slider, Typography } from "@material-ui/core";
+import { Slider, Typography } from "@material-ui/core";
 
 const Home = () => {
   const [customerName, setCustomerName] = useState('')
@@ -13,7 +12,9 @@ const Home = () => {
   const [customerPhone, setCustomerPhone] = useState('')
   const [customerCountry, setCustomerCountry] = useState('')
   const [numberOfOrganizations, setNumberOfOrganizations] = useState('')
+  const [numberOfProjects, setNumberOfProjects] = useState(1)
   const [measureGoal, setMeasureGoal] = useState('')
+  const [onboardingType, setOnboardingType] = useState('')
 
   const marks = new Array(10)
     .fill(0)
@@ -30,12 +31,6 @@ const Home = () => {
         payload: "Tus Vainas"
       })
     })
-  };
-  const toggleIfPsychometrics = () => {
-    setIfPsychometrics(prev => !prev);
-  };
-  const toggleIfOwnIndicators = () => {
-    setIfOwnIndicators(prev => !prev);
   };
 
   return (
@@ -78,6 +73,7 @@ const Home = () => {
               </FormControl>
             </div>
             <Divider />
+
             <h3>Cuéntanos sobre tu medición</h3>
             <div className ="selector">
               <InputLabel>
@@ -142,14 +138,47 @@ const Home = () => {
               ¿Cuántos proyectos quieres medir?
             </Typography>
             <Slider
-              defaultValue={10}
+              value={numberOfProjects}
+              defaultValue={1}
               step={1}
               min={1}
               max={10}
               marks={marks}
               valueLabelDisplay="on"
             />
+            <div className ="selector">
+              <InputLabel>
+                  ¿Cómo quieres hacer el onboarding?
+              </InputLabel>
+              <FormControl>
+                <Select
+                  id="onboardingType"
+                  value={onboardingType}
+                  onChange={setOnboardingType}
+                >
+                  <MenuItem value="Personalizado">
+                    Personalizado
+                  </MenuItem>
+                  <MenuItem value="Diseño Teoría de Cambio">
+                    Diseño Teoría de Cambio
+                  </MenuItem>
+                  <MenuItem value="Webinar Grupal">
+                    Webinar Grupal
+                  </MenuItem>
+                  <MenuItem value="Webinar Individual">
+                    Webinar Individual
+                  </MenuItem>
+                  <MenuItem value="Sin Onboarding">
+                    Sin Onboarding
+                  </MenuItem>
+                </Select>
+                <FormHelperText>
+                  El proceso de onboarding con nuestros consultores te ayudara a conseguir la mejor medición para tu proyecto
+                </FormHelperText>
+              </FormControl>
+            </div>
             <Divider/>
+
             <h3>Finalmente, ¿cómo te contactamos?</h3>
             <TextField
               id="customerName"
