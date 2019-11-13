@@ -16,24 +16,10 @@ const Home = () => {
   const [ifPsychometrics, setIfPsychometrics] = useState(false)
   const [ifOwnIndicators, setIfOwnIndicators] = useState(false)
 
-  const marks = [
-    {
-      value: 0,
-      label: '1',
-    },
-    {
-      value: 20,
-      label: '2',
-    },
-    {
-      value: 37,
-      label: '3',
-    },
-    {
-      value: 100,
-      label: '4',
-    },
-  ];
+  const marks = new Array(10)
+    .fill(0)
+    .map((_, i) => i + 1)
+    .map(i => ({ value: i, label: i.toString() }))
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -166,8 +152,8 @@ const Home = () => {
               ¿Cuántos proyectos quieres medir?
             </Typography>
             <Slider
-              defaultValue={8}
-              step={10}
+              defaultValue={10}
+              step={1}
               min={1}
               max={10}
               marks={marks}
