@@ -22,18 +22,18 @@ describe("CalculateTotalFinancialPlan", () => {
 
     const projectUnitPrice = 1200;
     const dashboardUnitPrice = 250;
-    const projectBasePrice = 10800 //TODO revisar qué pasa con este total
-    const dashboardBasePrice = 5 * dashboardUnitPrice // TODO Establecer qué vamos a hacer con este cálculo para no preguntar al usuario esto
+    const projectBasePrice = 10800 // TODO: revisar qué pasa con este total
+    const dashboardBasePrice = 5 * dashboardUnitPrice // TODO: Establecer qué vamos a hacer con este cálculo para no preguntar al usuario esto
     const totalPlatformPrice = projectBasePrice + dashboardBasePrice;
 
-    // TODO Establecer qué vamos a hacer con medición de levantamiento de información
-    // TODO Establecer qué vamos a hacer con medición de reportes
+    // TODO: Establecer qué vamos a hacer con medición de levantamiento de información
+    // TODO: Establecer qué vamos a hacer con medición de reportes
 
     console.log("totalOnboardingPrice", totalOnboardingPrice)
     console.log("totalPlatformPrice", totalPlatformPrice)
 
-    const totalMin = Math.trunc((totalOnboardingPrice + totalPlatformPrice)*0.8) //20% menos
-    const totalMax = Math.trunc((totalOnboardingPrice + totalPlatformPrice)*1.2) //20% más
+    const totalMin = Math.round((totalOnboardingPrice + totalPlatformPrice) * 0.8) //20% menos
+    const totalMax = Math.round((totalOnboardingPrice + totalPlatformPrice) * 1.2) //20% más
 
     expect(min).toEqual(totalMin);
     expect(max).toEqual(totalMax);
