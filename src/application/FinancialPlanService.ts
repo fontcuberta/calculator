@@ -5,7 +5,21 @@ import {
   CompanyType,
   MeasureGoal,
   OnboardingType,
+  ImpactMeasurementFinancialPlan,
 } from "../domain/CalculateTotalFinancialPlan"
+import { StringLiteral } from "@babel/types"
+
+export type User = {
+  country: string
+  firstname: string
+  lastname: string
+  email: string
+}
+
+export type FinancialPlanAndUser = {
+  impactMeasurementFinancialPlan: ImpactMeasurementFinancialPlan
+  user: User
+}
 
 export class FinancialPlanService {
   private hubspotClient: HubspotClient
@@ -14,15 +28,16 @@ export class FinancialPlanService {
     this.hubspotClient = new HubspotClient()
   }
 
-  async calculateTotalFincancialPlanAndSave() {
+  async calculateTotalFincancialPlanAndSave(financialPlanAndUser: FinancialPlanAndUser) {
     const companyType = CompanyType.MULTINATIONAL_CORPORATION
 
     const totalFinancialPlan = calculateTotalFinancialPlan({
-      numberOfProjects: 3,
-      numberOfOrganizations: 4,
-      companyType: companyType,
-      measureGoal: MeasureGoal.INVESTMENT_DECISION,
-      onboardingType: OnboardingType.THEORY_OF_CHANGE,
+      numberOfProjects: financialPlanAndUser.impactMeasurementFinancialPlan.numberOfProjects,
+      numberOfOrganizations:
+        financialPlanAndUser.impactMeasurementFinancialPlan.numberOfOrganizations,
+      companyType: financialPlanAndUser.impactMeasurementFinancialPlan.companyType,
+      measureGoal: financialPlanAndUser.impactMeasurementFinancialPlan.measureGoal,
+      onboardingType: financialPlanAndUser.impactMeasurementFinancialPlan.onboardingType,
     })
 
     const [minTotalPrice, maxTotalPrice] = getMinAndMaxLimits(totalFinancialPlan)
@@ -30,10 +45,10 @@ export class FinancialPlanService {
     const result = await this.hubspotClient.sendFinancialPlan(
       {
         companyType,
-        country: "Venezuela",
-        firstname: "Dani",
-        lastname: "Fontcuberta",
-        email: "dani@fontcuberta.es",
+        country: financialPlanAndUser.user.country,
+        firstname: financialPlanAndUser.user.firstname,
+        lastname: financialPlanAndUser.user.lastname,
+        email: financialPlanAndUser.user.email,
       },
       {
         minTotalPrice,

@@ -1,29 +1,32 @@
-import React, { useState, FormEvent } from "react";
-import Head from "next/head";
-import { CssBaseline, Container, Divider, TextField } from "@material-ui/core";
+import React, { useState, FormEvent } from "react"
+import Head from "next/head"
+import { CssBaseline, Container, Divider, TextField } from "@material-ui/core"
 import {
   InputLabel,
   MenuItem,
   FormHelperText,
   FormControl,
   Select,
-  Button
-} from "@material-ui/core";
-import { Slider, Typography } from "@material-ui/core";
+  Button,
+} from "@material-ui/core"
+import { Slider, Typography } from "@material-ui/core"
+import { FinancialPlanAndUser } from "../application/FinancialPlanService"
+import { CompanyType, MeasureGoal, OnboardingType } from "../domain/CalculateTotalFinancialPlan"
 
-const bindEventValueTo = (eventHandelerFn: any) => (event: any) => eventHandelerFn(event.target.value)
+const bindEventValueTo = (eventHandelerFn: any) => (event: any) =>
+  eventHandelerFn(event.target.value)
 
 const Home = () => {
-  const [customerName, setCustomerName] = useState("");
-  const [companyType, setCompanyType] = useState("");
-  const [customerLastname, setCustomerLastname] = useState("");
-  const [customerEmail, setCustomerEmail] = useState("");
-  const [customerPhone, setCustomerPhone] = useState("");
-  const [customerCountry, setCustomerCountry] = useState("");
-  const [numberOfOrganizations, setNumberOfOrganizations] = useState("");
-  const [numberOfProjects, setNumberOfProjects] = useState(1);
-  const [measureGoal, setMeasureGoal] = useState("");
-  const [onboardingType, setOnboardingType] = useState("");
+  const [customerName, setCustomerName] = useState("")
+  const [companyType, setCompanyType] = useState(CompanyType.MULTINATIONAL_CORPORATION)
+  const [customerLastname, setCustomerLastname] = useState("")
+  const [customerEmail, setCustomerEmail] = useState("")
+  const [customerPhone, setCustomerPhone] = useState("")
+  const [customerCountry, setCustomerCountry] = useState("")
+  const [numberOfOrganizations, setNumberOfOrganizations] = useState(1)
+  const [numberOfProjects, setNumberOfProjects] = useState(1)
+  const [measureGoal, setMeasureGoal] = useState(MeasureGoal.INSIGHTS_FINDING)
+  const [onboardingType, setOnboardingType] = useState(OnboardingType.CUSTOMIZED)
 
   console.log("customerName", customerName)
   console.log("companyType", companyType)
@@ -39,25 +42,30 @@ const Home = () => {
   const marks = new Array(10)
     .fill(0)
     .map((_, i) => i + 1)
-    .map(i => ({ value: i, label: i.toString() }));
+    .map(i => ({ value: i, label: i.toString() }))
 
   const handleSubmit = () => {
-    fetch("http://localhost:3000/api/new-application", {
-      method: "POST",
-      body: JSON.stringify({
-        customerName,
+    const financialPlanAndUser: FinancialPlanAndUser = {
+      impactMeasurementFinancialPlan: {
         companyType,
-        customerLastname,
-        customerEmail,
-        customerPhone,
-        customerCountry,
+        measureGoal,
         numberOfOrganizations,
         numberOfProjects,
-        measureGoal,
-        onboardingType
-      })
-    });
-  };
+        onboardingType,
+      },
+      user: {
+        country: customerCountry,
+        email: customerEmail,
+        firstname: customerName,
+        lastname: customerLastname,
+      },
+    }
+
+    fetch("http://localhost:3000/api/new-application", {
+      method: "POST",
+      body: JSON.stringify(financialPlanAndUser),
+    })
+  }
 
   return (
     <div>
@@ -71,8 +79,8 @@ const Home = () => {
           <div className="hero">
             <h1 className="title">Cuantix Calculator!</h1>
             <h2>
-              ¡Hola! ¿Quieres saber cuánto podría costar tu medición? Contesta
-              algunas preguntas y te enviaremos un presupuesto estimado.
+              ¡Hola! ¿Quieres saber cuánto podría costar tu medición? Contesta algunas preguntas y
+              te enviaremos un presupuesto estimado.
             </h2>
             <form noValidate autoComplete="off">
               <h3>Háblanos un poco de tu empresa</h3>
@@ -84,11 +92,11 @@ const Home = () => {
                     value={companyType}
                     onChange={bindEventValueTo(setCompanyType)}
                   >
-                    <MenuItem value="Multinacional / Corporación">
+                    <MenuItem value={CompanyType.MULTINATIONAL_CORPORATION}>
                       Multinacional / Corporación
                     </MenuItem>
-                    <MenuItem value="Empresa">Empresa</MenuItem>
-                    <MenuItem value="NGO">NGO</MenuItem>
+                    <MenuItem value={CompanyType.COMPANY}>Empresa</MenuItem>
+                    <MenuItem value={CompanyType.NGO}>NGO</MenuItem>
                   </Select>
                   <FormHelperText>
                     Selecciona la opción que mejor describe a tu empresa
@@ -106,17 +114,15 @@ const Home = () => {
                     value={measureGoal}
                     onChange={bindEventValueTo(setMeasureGoal)}
                   >
-                    <MenuItem value="Influir en políticas públicas">
+                    <MenuItem value={MeasureGoal.PUBLIC_POLICY}>
                       Influir en políticas públicas
                     </MenuItem>
-                    <MenuItem value="Tomar decisiones de inversión">
+                    <MenuItem value={MeasureGoal.INVESTMENT_DECISION}>
                       Tomar decisiones de inversión
                     </MenuItem>
-                    <MenuItem value="Levantar fondos">Levantar fondos</MenuItem>
-                    <MenuItem value="Demostrar el retorno">
-                      Demostrar el retorno
-                    </MenuItem>
-                    <MenuItem value="Conocer insights o necesidades">
+                    <MenuItem value={MeasureGoal.FUNDRAISING}>Levantar fondos</MenuItem>
+                    <MenuItem value={MeasureGoal.REVENUE_ASSURANCE}>Demostrar el retorno</MenuItem>
+                    <MenuItem value={MeasureGoal.INSIGHTS_FINDING}>
                       Conocer insights o necesidades
                     </MenuItem>
                   </Select>
@@ -127,26 +133,26 @@ const Home = () => {
               </div>
               <div className="selector">
                 <InputLabel>
-                  ¿Cuántas organizaciones intervienen en la creación y captura
-                  de datos del proyecto?
+                  ¿Cuántas organizaciones intervienen en la creación y captura de datos del
+                  proyecto?
                 </InputLabel>
-                <FormControl>
-                  <Select
-                    id="numberOfOrganizations"
-                    value={numberOfOrganizations}
-                    onChange={bindEventValueTo(setNumberOfOrganizations)}
-                  >
-                    <MenuItem value="Solo una (organización ejecutora)">
-                      Solo una (organización ejecutora)
-                    </MenuItem>
-                    <MenuItem value="De 2 a 4">De 2 a 4</MenuItem>
-                    <MenuItem value="5 a 10">5 a 10</MenuItem>
-                    <MenuItem value="10 a 20">10 a 20</MenuItem>
-                    <MenuItem value="Más de 20">Más de 20</MenuItem>
-                  </Select>
-                </FormControl>
+                <TextField
+                  id="numberOfOrganizations"
+                  label="Organizaciones"
+                  type="number"
+                  InputProps={{ inputProps: { min: 1, max: 20 } }}
+                  value={numberOfOrganizations}
+                  onChange={event => {
+                    const number = parseInt(event.target.value)
+                    setNumberOfOrganizations(number)
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  margin="normal"
+                />
               </div>
-              <Typography id="discrete-slider-always" gutterBottom>
+              <Typography id="slider" gutterBottom>
                 ¿Cuántos proyectos quieres medir?
               </Typography>
               <Slider
@@ -157,6 +163,11 @@ const Home = () => {
                 max={10}
                 marks={marks}
                 valueLabelDisplay="on"
+                onChange={(_event, newValue) => {
+                  if (!Array.isArray(newValue)) {
+                    setNumberOfProjects(newValue)
+                  }
+                }}
               />
               <div className="selector">
                 <InputLabel>¿Cómo quieres hacer el onboarding?</InputLabel>
@@ -166,19 +177,19 @@ const Home = () => {
                     value={onboardingType}
                     onChange={bindEventValueTo(setOnboardingType)}
                   >
-                    <MenuItem value="Personalizado">Personalizado</MenuItem>
-                    <MenuItem value="Diseño Teoría de Cambio">
+                    <MenuItem value={OnboardingType.CUSTOMIZED}>Personalizado</MenuItem>
+                    <MenuItem value={OnboardingType.THEORY_OF_CHANGE}>
                       Diseño Teoría de Cambio
                     </MenuItem>
-                    <MenuItem value="Webinar Grupal">Webinar Grupal</MenuItem>
-                    <MenuItem value="Webinar Individual">
+                    <MenuItem value={OnboardingType.GROUP_WEBINAR}>Webinar Grupal</MenuItem>
+                    <MenuItem value={OnboardingType.INDIVIDUAL_WEBINAR}>
                       Webinar Individual
                     </MenuItem>
-                    <MenuItem value="Sin Onboarding">Sin Onboarding</MenuItem>
+                    <MenuItem value={OnboardingType.NO_ONBOARDING}>Sin Onboarding</MenuItem>
                   </Select>
                   <FormHelperText>
-                    El proceso de onboarding con nuestros consultores te ayudara
-                    a conseguir la mejor medición para tu proyecto
+                    El proceso de onboarding con nuestros consultores te ayudara a conseguir la
+                    mejor medición para tu proyecto
                   </FormHelperText>
                 </FormControl>
               </div>
@@ -294,9 +305,12 @@ const Home = () => {
           margin-top: 20px;
           width: 100%;
         }
+        #slider {
+          margin-top: 210px;
+        }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

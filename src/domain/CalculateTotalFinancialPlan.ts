@@ -1,7 +1,7 @@
 export enum CompanyType {
   MULTINATIONAL_CORPORATION = "Multinacional / Corporación",
   COMPANY = "Empresa",
-  NGO = "NGO"
+  NGO = "NGO",
 }
 
 export enum MeasureGoal {
@@ -9,7 +9,7 @@ export enum MeasureGoal {
   INVESTMENT_DECISION = "Tomar decisiones de inversión",
   FUNDRAISING = "Levantar fondos",
   REVENUE_ASSURANCE = "Demostrar el retorno",
-  INSIGHTS_FINDING = "Conocer insights o necesidades"
+  INSIGHTS_FINDING = "Conocer insights o necesidades",
 }
 
 export enum OnboardingType {
@@ -17,10 +17,10 @@ export enum OnboardingType {
   THEORY_OF_CHANGE = "Diseño Teoría de Cambio",
   GROUP_WEBINAR = "Webinar Grupal",
   INDIVIDUAL_WEBINAR = "Webinar Individual",
-  NO_ONBOARDING = "Sin Onboarding"
+  NO_ONBOARDING = "Sin Onboarding",
 }
 
-type CustomerData = {
+export type ImpactMeasurementFinancialPlan = {
   companyType: CompanyType
   measureGoal: MeasureGoal
   numberOfOrganizations: number
@@ -35,22 +35,28 @@ const EXPECTED_DASHBOARDS_SELECTED = 5
 const PERCENTAGE_LOWER_LIMIT = 80
 const PERCENTAGE_UPPER_LIMIT = 120
 
-export function calculateTotalFinancialPlan(customerData: CustomerData) {
+export function calculateTotalFinancialPlan(
+  impactMeasurementFinancialPlan: ImpactMeasurementFinancialPlan,
+) {
   const organizationUnitPrice = getOrganizationUnitPrice(
-    customerData.companyType,
-    customerData.measureGoal
+    impactMeasurementFinancialPlan.companyType,
+    impactMeasurementFinancialPlan.measureGoal,
   )
   const onboardingUnitPrice = getOnboardingUnitPrice(
-    customerData.companyType,
-    customerData.measureGoal
+    impactMeasurementFinancialPlan.companyType,
+    impactMeasurementFinancialPlan.measureGoal,
   )
-  const organizationBasePrice = customerData.numberOfOrganizations * organizationUnitPrice
-  const onboardingBasePrice = customerData.numberOfProjects * onboardingUnitPrice
+  const organizationBasePrice =
+    impactMeasurementFinancialPlan.numberOfOrganizations * organizationUnitPrice
+  const onboardingBasePrice = impactMeasurementFinancialPlan.numberOfProjects * onboardingUnitPrice
   const totalOnboardingPrice = organizationBasePrice + onboardingBasePrice
 
   const projectUnitPrice = PROJECT_UNIT_PRICE
   const dashboardUnitPrice = DASHBOARD_UNIT_PRICE
-  const projectBasePrice = getProjectBasePrice(customerData.numberOfProjects, projectUnitPrice)
+  const projectBasePrice = getProjectBasePrice(
+    impactMeasurementFinancialPlan.numberOfProjects,
+    projectUnitPrice,
+  )
   const dashboardBasePrice = EXPECTED_DASHBOARDS_SELECTED * dashboardUnitPrice // TODO: Establecer qué vamos a hacer con este cálculo para no preguntar al usuario esto
   const totalPlatformPrice = projectBasePrice + dashboardBasePrice
   const totalDataCollectionPrice = 9500
