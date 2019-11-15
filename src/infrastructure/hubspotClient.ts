@@ -1,3 +1,16 @@
+type FinancialPlan = {
+  minTotalPrice: number
+  maxTotalPrice: number
+}
+
+type User = {
+  companyType: string
+  lastname: string
+  firstname: string
+  email: string
+  country: string
+}
+
 export class HubspotClient {
   private apiKey: string
 
@@ -5,11 +18,17 @@ export class HubspotClient {
     this.apiKey = apiKey
   }
 
-  async sendFinancialPlan(): Promise<void> {
+  async sendFinancialPlan(user: User, financialPlan: FinancialPlan): Promise<void> {
     await fetch(`https://api.hubapi.com/contacts/v1/contact/?hapikey=${this.apiKey}`, {
       method: "POST",
       body: JSON.stringify({
-        payload: "tus vainas"
+        min_total_price: financialPlan.minTotalPrice,
+        max_total_price: financialPlan.maxTotalPrice,
+        lastname: user.lastname,
+        firstname: user.firstname,
+        email: user.email,
+        country: user.country,
+        company_type: user.companyType
       })
     })
   }
