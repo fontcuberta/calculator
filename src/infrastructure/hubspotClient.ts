@@ -5,5 +5,12 @@ export class HubspotClient {
     this.apiKey = apiKey
   }
 
-  sendFinancialPlan() {}
+  async sendFinancialPlan(): Promise<void> {
+    await fetch(`https://api.hubapi.com/contacts/v1/contact/?hapikey=${this.apiKey}`, {
+      method: "POST",
+      body: JSON.stringify({
+        payload: "tus vainas"
+      })
+    })
+  }
 }
