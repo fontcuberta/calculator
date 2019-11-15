@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
     "@material-ui/core": "^4.6.1",
@@ -16,8 +17,10 @@
     "react-dom": "16.11.0"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.23",
     "@types/node": "^12.12.7",
     "babel-plugin-styled-components": "^1.10.6",
+    "jest": "^24.9.0",
     "typescript": "^3.7.2"
   }
 }
