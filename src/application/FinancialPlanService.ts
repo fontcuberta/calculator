@@ -21,7 +21,7 @@ export class FinancialPlanService {
       numberOfProjects: 3,
       numberOfOrganizations: 4,
       companyType: companyType,
-      measureGoal: MeasureGoal.INVESTMENT_DESICION,
+      measureGoal: MeasureGoal.INVESTMENT_DECISION,
       onboardingType: OnboardingType.THEORY_OF_CHANGE,
     })
 
