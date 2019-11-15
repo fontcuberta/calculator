@@ -10,7 +10,7 @@ describe("CalculateTotalFinancialPlan", () => {
   it("calculates total financial plan", () => {
     const customerData = {
       companyType: CompanyType.MULTINATIONAL_CORPORATION,
-      measureGoal: MeasureGoal.INVESTMENT_DESICION,
+      measureGoal: MeasureGoal.INVESTMENT_DECISION,
       numberOfOrganizations: 3,
       numberOfProjects: 4,
       onboardingType: OnboardingType.THEORY_OF_CHANGE

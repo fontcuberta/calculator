@@ -6,7 +6,7 @@ export enum CompanyType {
 
 export enum MeasureGoal {
   PUBLIC_POLICY = "Influir en políticas públicas",
-  INVESTMENT_DESICION = "Tomar decisiones de inversión",
+  INVESTMENT_DECISION = "Tomar decisiones de inversión",
   FUNDRAISING = "Levantar fondos",
   REVENUE_ASSURANCE = "Demostrar el retorno",
   INSIGHTS_FINDING = "Conocer insights o necesidades"
@@ -72,7 +72,7 @@ function getProjectBasePrice(numberOfProjects: number, projectUnitPrice: number)
 function getOnboardingUnitPrice(companyType: CompanyType, measureGoal: MeasureGoal) {
   if (
     companyType === CompanyType.MULTINATIONAL_CORPORATION &&
-    measureGoal === MeasureGoal.INVESTMENT_DESICION
+    measureGoal === MeasureGoal.INVESTMENT_DECISION
   ) {
     return 1200
   }
@@ -83,7 +83,7 @@ function getOnboardingUnitPrice(companyType: CompanyType, measureGoal: MeasureGo
 function getOrganizationUnitPrice(companyType: CompanyType, measureGoal: MeasureGoal) {
   if (
     companyType === CompanyType.MULTINATIONAL_CORPORATION &&
-    measureGoal === MeasureGoal.INVESTMENT_DESICION
+    measureGoal === MeasureGoal.INVESTMENT_DECISION
   ) {
     return 12003
   }
