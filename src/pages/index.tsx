@@ -51,7 +51,7 @@ const Home = () => {
       },
     }
 
-    fetch("http://localhost:3000/api/new-application", {
+    fetch("/api/new-application", {
       method: "POST",
       body: JSON.stringify(financialPlanAndUser),
     })
