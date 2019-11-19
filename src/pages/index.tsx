@@ -61,7 +61,7 @@ const Home = () => {
     <div>
       <Head>
         <title>Cuantix Calculator</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="favicon.ico" />
       </Head>
       <React.Fragment>
         <Navigator />
