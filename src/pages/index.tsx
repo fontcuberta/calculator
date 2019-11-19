@@ -1,4 +1,5 @@
-import React, { useState, FormEvent } from "react"
+import React, { useState } from "react"
+import Navigator from "../components/Navigator"
 import Head from "next/head"
 import { CssBaseline, Container, Divider, TextField } from "@material-ui/core"
 import {
@@ -27,17 +28,6 @@ const Home = () => {
   const [numberOfProjects, setNumberOfProjects] = useState(1)
   const [measureGoal, setMeasureGoal] = useState(MeasureGoal.INSIGHTS_FINDING)
   const [onboardingType, setOnboardingType] = useState(OnboardingType.CUSTOMIZED)
-
-  console.log("customerName", customerName)
-  console.log("companyType", companyType)
-  console.log("customerLastname", customerLastname)
-  console.log("customerEmail", customerEmail)
-  console.log("customerPhone", customerPhone)
-  console.log("customerCountry", customerCountry)
-  console.log("numberOfOrganizations", numberOfOrganizations)
-  console.log("numberOfProjects", numberOfProjects)
-  console.log("measureGoal", measureGoal)
-  console.log("onboardingType", onboardingType)
 
   const marks = new Array(10)
     .fill(0)
@@ -74,10 +64,11 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <React.Fragment>
+        <Navigator />
         <CssBaseline />
         <Container maxWidth="md">
           <div className="hero">
-            <h1 className="title">Cuantix Calculator!</h1>
+            <h1 className="title">Cuantix Calculator</h1>
             <h2>
               ¡Hola! ¿Quieres saber cuánto podría costar tu medición? Contesta algunas preguntas y
               te enviaremos un presupuesto estimado.
@@ -267,39 +258,11 @@ const Home = () => {
           padding-top: 80px;
           line-height: 1.15;
           font-size: 48px;
+          color: #696969;
         }
         .title,
         .description {
           text-align: center;
-        }
-        .row {
-          max-width: 880px;
-          margin: 80px auto 40px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-        }
-        .card {
-          padding: 18px 18px 24px;
-          width: 220px;
-          text-align: left;
-          text-decoration: none;
-          color: #434343;
-          border: 1px solid #9b9b9b;
-        }
-        .card:hover {
-          border-color: #067df7;
-        }
-        .card h3 {
-          margin: 0;
-          color: #067df7;
-          font-size: 18px;
-        }
-        .card p {
-          margin: 0;
-          padding: 12px 0 0;
-          font-size: 13px;
-          color: #333;
         }
         .selector {
           margin-top: 20px;
