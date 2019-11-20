@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Navigator from "../components/Navigator"
 import Head from "next/head"
-import { CssBaseline, Container, Divider, TextField } from "@material-ui/core"
+import { CssBaseline, Container, TextField } from "@material-ui/core"
 import {
   InputLabel,
   MenuItem,
@@ -70,8 +70,8 @@ const Home = () => {
           <div className="hero">
             <h1 className="title">Cuantix Calculator</h1>
             <h2>
-              ¡Hola! ¿Quieres saber cuánto podría costar tu medición? Contesta algunas preguntas y
-              te enviaremos un presupuesto estimado.
+              ¿Quieres saber cuánto podría costar tu medición? Contesta algunas preguntas y te
+              enviaremos un presupuesto estimado.
             </h2>
             <form noValidate autoComplete="off">
               <h3>Háblanos un poco de tu empresa</h3>
@@ -94,7 +94,6 @@ const Home = () => {
                   </FormHelperText>
                 </FormControl>
               </div>
-              <Divider />
 
               <h3>Cuéntanos sobre tu medición</h3>
               <div className="selector">
@@ -169,7 +168,7 @@ const Home = () => {
                     value={onboardingType}
                     onChange={bindEventValueTo(setOnboardingType)}
                   >
-                    <MenuItem value={OnboardingType.CUSTOMIZED}>Personalizado</MenuItem>
+                    <MenuItem value={OnboardingType.NO_ONBOARDING}>Sin Onboarding</MenuItem>
                     <MenuItem value={OnboardingType.THEORY_OF_CHANGE}>
                       Diseño Teoría de Cambio
                     </MenuItem>
@@ -177,7 +176,7 @@ const Home = () => {
                     <MenuItem value={OnboardingType.INDIVIDUAL_WEBINAR}>
                       Webinar Individual
                     </MenuItem>
-                    <MenuItem value={OnboardingType.NO_ONBOARDING}>Sin Onboarding</MenuItem>
+                    <MenuItem value={OnboardingType.CUSTOMIZED}>Personalizado</MenuItem>
                   </Select>
                   <FormHelperText>
                     El proceso de onboarding con nuestros consultores te ayudara a conseguir la
@@ -185,7 +184,6 @@ const Home = () => {
                   </FormHelperText>
                 </FormControl>
               </div>
-              <Divider />
 
               <h3>Finalmente, ¿cómo te contactamos?</h3>
               <TextField
