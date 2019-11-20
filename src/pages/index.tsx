@@ -31,6 +31,14 @@ const THEME = createMuiTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
   },
+  palette: {
+    primary: {
+      main: "#F19809",
+    },
+    secondary: {
+      main: "#9A1A18",
+    },
+  },
 })
 
 const Home = () => {
@@ -162,11 +170,11 @@ const Home = () => {
                     margin="normal"
                   />
                 </div>
-                <Typography id="slider" gutterBottom>
-                  ¿Cuántos proyectos quieres medir?
-                </Typography>
+                <Typography gutterBottom>¿Cuántos proyectos quieres medir?</Typography>
                 <Slider
                   value={numberOfProjects}
+                  color="primary"
+                  className="slider"
                   defaultValue={1}
                   step={1}
                   min={1}
@@ -250,21 +258,24 @@ const Home = () => {
                   fullWidth
                   margin="normal"
                 />
-
-                <Button className="button" onClick={handleSubmit}>
-                  SUBMIT
-                </Button>
+                <div className="button-div">
+                  <Button variant="contained" color="secondary" onClick={handleSubmit}>
+                    SOLICITAR PRESUPUESTO
+                  </Button>
+                </div>
               </form>
             </div>
           </Container>
         </React.Fragment>
 
         <style jsx>{`
+          .button-div {
+            margin: 5% 0;
+            text-align: center;
+          }
           .button {
-            width: 100% !important;
-            color: red !important;
+            color: red;
             border: 1px solid #9b9b9b;
-            background-color: #230000;
           }
           .hero {
             width: 100%;
@@ -286,8 +297,8 @@ const Home = () => {
             margin-top: 20px;
             width: 100%;
           }
-          #slider {
-            margin-top: 210px;
+          .slider {
+            margin: 400px;
           }
         `}</style>
       </MuiThemeProvider>
