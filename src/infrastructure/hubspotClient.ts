@@ -32,19 +32,23 @@ export class HubspotClient {
       company_type: user.companyType,
     })
 
-    return fetch(`https://api.hubapi.com/contacts/v1/contact/?hapikey=${this.apiKey}`, {
-      method: "POST",
-      body: JSON.stringify({
-        properties: [
-          { property: "min_total_price", value: financialPlan.minTotalPrice },
-          { property: "max_total_price", value: financialPlan.maxTotalPrice },
-          { property: "lastname", value: user.lastname },
-          { property: "firstname", value: user.firstname },
-          { property: "email", value: user.email },
-          { property: "country", value: user.country },
-          { property: "company_type", value: user.companyType },
-        ],
-      }),
-    }).then(response => response.json())
+    return fetch(
+      `https://api.hubapi.com/contacts/v1/contact/createOrUpdate/email/${user.email}/?hapikey=${this.apiKey}`,
+
+      {
+        method: "POST",
+        body: JSON.stringify({
+          properties: [
+            { property: "min_total_price", value: financialPlan.minTotalPrice },
+            { property: "max_total_price", value: financialPlan.maxTotalPrice },
+            { property: "lastname", value: user.lastname },
+            { property: "firstname", value: user.firstname },
+            { property: "email", value: user.email },
+            { property: "country", value: user.country },
+            { property: "company_type", value: user.companyType },
+          ],
+        }),
+      },
+    ).then(response => response.json())
   }
 }

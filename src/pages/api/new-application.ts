@@ -16,8 +16,9 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   const body = JSON.parse(req.body)
 
   if (isCustomerPayload(body)) {
+    console.log("Tengo la respuesta en el lado del servidor", body)
     financialPlanService
-      .calculateTotalFincancialPlanAndSave(body)
+      .calculateTotalFinancialPlanAndSave(body)
       .then(() => {
         res.status(200).send({
           status: "ok",
@@ -30,12 +31,11 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         })
       })
   } else {
+    console.error("missing", body)
     res.status(400).send({
       errorMessage: "Missing fields",
     })
   }
-
-  console.log("Tengo la respuesta en el lado del servidor", body)
 }
 
 function isCustomerPayload(customerPayload: any): customerPayload is FinancialPlanAndUser {

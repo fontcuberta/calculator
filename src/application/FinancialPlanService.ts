@@ -28,7 +28,7 @@ export class FinancialPlanService {
     this.hubspotClient = new HubspotClient()
   }
 
-  async calculateTotalFincancialPlanAndSave(financialPlanAndUser: FinancialPlanAndUser) {
+  async calculateTotalFinancialPlanAndSave(financialPlanAndUser: FinancialPlanAndUser) {
     const companyType = CompanyType.MULTINATIONAL_CORPORATION
 
     const totalFinancialPlan = calculateTotalFinancialPlan({
