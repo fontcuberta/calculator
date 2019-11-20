@@ -113,6 +113,7 @@ const Home = () => {
                     </MenuItem>
                     <MenuItem value={MeasureGoal.FUNDRAISING}>Levantar fondos</MenuItem>
                     <MenuItem value={MeasureGoal.REVENUE_ASSURANCE}>Demostrar el retorno</MenuItem>
+                    <MenuItem value={MeasureGoal.ACCOUNTABILITY}>Rendición de cuentas</MenuItem>
                     <MenuItem value={MeasureGoal.INSIGHTS_FINDING}>
                       Conocer insights o necesidades
                     </MenuItem>

@@ -9,6 +9,7 @@ export enum MeasureGoal {
   INVESTMENT_DECISION = "Tomar decisiones de inversión",
   FUNDRAISING = "Levantar fondos",
   REVENUE_ASSURANCE = "Demostrar el retorno",
+  ACCOUNTABILITY = "Rendición de cuentas",
   INSIGHTS_FINDING = "Conocer insights o necesidades",
 }
 
@@ -44,7 +45,7 @@ export function calculateTotalFinancialPlan(
   )
   const onboardingUnitPrice = getOnboardingUnitPrice(
     impactMeasurementFinancialPlan.companyType,
-    impactMeasurementFinancialPlan.measureGoal,
+    impactMeasurementFinancialPlan.onboardingType,
   )
   const organizationBasePrice =
     impactMeasurementFinancialPlan.numberOfOrganizations * organizationUnitPrice
@@ -75,26 +76,78 @@ function getProjectBasePrice(numberOfProjects: number, projectUnitPrice: number)
   return (numberOfProjects - 1) * projectUnitPrice
 }
 
-function getOnboardingUnitPrice(companyType: CompanyType, measureGoal: MeasureGoal) {
-  if (
-    companyType === CompanyType.MULTINATIONAL_CORPORATION &&
-    measureGoal === MeasureGoal.INVESTMENT_DECISION
-  ) {
-    return 1200
+function getOnboardingUnitPrice(companyType: CompanyType, onboardingType: OnboardingType) {
+  if (companyType === CompanyType.MULTINATIONAL_CORPORATION) {
+    if (onboardingType === OnboardingType.THEORY_OF_CHANGE) {
+      return 1200
+    }
+    if (onboardingType === OnboardingType.GROUP_WEBINAR) {
+      return 603
+    }
+    if (onboardingType === OnboardingType.INDIVIDUAL_WEBINAR) {
+      return 1003
+    }
+    if (onboardingType === OnboardingType.CUSTOMIZED) {
+      return 1603
+    }
+  } else {
+    if (onboardingType === OnboardingType.THEORY_OF_CHANGE) {
+      return 802
+    }
+    if (onboardingType === OnboardingType.GROUP_WEBINAR) {
+      return 602
+    }
+    if (onboardingType === OnboardingType.INDIVIDUAL_WEBINAR) {
+      return 1002
+    }
+    if (onboardingType === OnboardingType.CUSTOMIZED) {
+      return 1602
+    }
   }
-
-  throw new Error(`getOnboardingUnitPrice not implemented for ${companyType} and ${measureGoal}`)
+  throw new Error(`getOnboardingUnitPrice not implemented for ${companyType} and ${onboardingType}`)
 }
 
 function getOrganizationUnitPrice(companyType: CompanyType, measureGoal: MeasureGoal) {
-  if (
-    companyType === CompanyType.MULTINATIONAL_CORPORATION &&
-    measureGoal === MeasureGoal.INVESTMENT_DECISION
-  ) {
-    return 12003
+  if (companyType === CompanyType.MULTINATIONAL_CORPORATION) {
+    if (measureGoal === MeasureGoal.PUBLIC_POLICY) {
+      return 30003
+    }
+    if (measureGoal === MeasureGoal.INVESTMENT_DECISION) {
+      return 12003
+    }
+    if (measureGoal === MeasureGoal.FUNDRAISING) {
+      return 1003
+    }
+    if (measureGoal === MeasureGoal.REVENUE_ASSURANCE) {
+      return 1003
+    }
+    if (measureGoal === MeasureGoal.ACCOUNTABILITY) {
+      return 803
+    }
+    if (measureGoal === MeasureGoal.INSIGHTS_FINDING) {
+      return 303
+    }
+  } else {
+    if (measureGoal === MeasureGoal.PUBLIC_POLICY) {
+      return 30002
+    }
+    if (measureGoal === MeasureGoal.INVESTMENT_DECISION) {
+      return 12002
+    }
+    if (measureGoal === MeasureGoal.FUNDRAISING) {
+      return 1002
+    }
+    if (measureGoal === MeasureGoal.REVENUE_ASSURANCE) {
+      return 1002
+    }
+    if (measureGoal === MeasureGoal.ACCOUNTABILITY) {
+      return 802
+    }
+    if (measureGoal === MeasureGoal.INSIGHTS_FINDING) {
+      return 302
+    }
   }
-
-  throw new Error(`getOnboardingUnitPrice not implemented for ${companyType} and ${measureGoal}`)
+  throw new Error(`getOrganizationUnitPrice not implemented for ${companyType} and ${measureGoal}`)
 }
 
 export function getMinAndMaxLimits(totalFinancialPlan: number) {
