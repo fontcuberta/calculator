@@ -26,12 +26,24 @@ export type ImpactMeasurementFinancialPlan = {
   measureGoal: MeasureGoal
   numberOfOrganizations: number
   numberOfProjects: number
+  numberOfEbookReports: number
+  numberOfPDFReports: number
+  numberOfReadableReports: number
+  numberOfExecutiveReports: number
+  numberOfOnePagerReports: number
+  numberOfDashboardReports: number
   onboardingType: OnboardingType
 }
 
 const PROJECT_UNIT_PRICE = 1200
 const DASHBOARD_UNIT_PRICE = 250
 const EXPECTED_DASHBOARDS_SELECTED = 5
+const EBOOK_REPORT_UNIT_PRICE = 2500
+const PDF_REPORT_UNIT_PRICE = 1800
+const READABLE_REPORT_UNIT_PRICE = 1500
+const EXECUTIVE_REPORT_UNIT_PRICE = 700
+const ONEPAGER_REPORT_UNIT_PRICE = 400
+const DASHBOARD_REPORT_UNIT_PRICE = 300
 
 const PERCENTAGE_LOWER_LIMIT = 80
 const PERCENTAGE_UPPER_LIMIT = 120
@@ -61,12 +73,17 @@ export function calculateTotalFinancialPlan(
   const dashboardBasePrice = EXPECTED_DASHBOARDS_SELECTED * dashboardUnitPrice // TODO: Establecer qué vamos a hacer con este cálculo para no preguntar al usuario esto
   const totalPlatformPrice = projectBasePrice + dashboardBasePrice
   const totalDataCollectionPrice = 9500
-  const totalReportingPrice = 2500
+  const totalReportingPrice =
+    impactMeasurementFinancialPlan.numberOfEbookReports * EBOOK_REPORT_UNIT_PRICE +
+    impactMeasurementFinancialPlan.numberOfPDFReports * PDF_REPORT_UNIT_PRICE +
+    impactMeasurementFinancialPlan.numberOfReadableReports * READABLE_REPORT_UNIT_PRICE +
+    impactMeasurementFinancialPlan.numberOfExecutiveReports * EXECUTIVE_REPORT_UNIT_PRICE +
+    impactMeasurementFinancialPlan.numberOfOnePagerReports * ONEPAGER_REPORT_UNIT_PRICE +
+    impactMeasurementFinancialPlan.numberOfDashboardReports * DASHBOARD_REPORT_UNIT_PRICE
 
   const totalFinancialPlan =
     totalOnboardingPrice + totalPlatformPrice + totalDataCollectionPrice + totalReportingPrice
   // TODO: Establecer qué vamos a hacer con medición de levantamiento de información
-  // TODO: Establecer qué vamos a hacer con medición de reportes
 
   return totalFinancialPlan
 }

@@ -71,7 +71,13 @@ const Home = () => {
         measureGoal,
         numberOfOrganizations,
         numberOfProjects,
-        onboardingType,
+        numberOfEbookReports,
+        numberOfPDFReports,
+        numberOfReadableReports,
+        numberOfExecutiveReports,
+        numberOfOnePagerReports,
+        numberOfDashboardReports,
+        onboardingType
       },
       user: {
         country: customerCountry,

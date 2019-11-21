@@ -29,22 +29,31 @@ export class FinancialPlanService {
   }
 
   async calculateTotalFinancialPlanAndSave(financialPlanAndUser: FinancialPlanAndUser) {
-    const companyType = CompanyType.MULTINATIONAL_CORPORATION
-
     const totalFinancialPlan = calculateTotalFinancialPlan({
+      companyType: financialPlanAndUser.impactMeasurementFinancialPlan.companyType,
       numberOfProjects: financialPlanAndUser.impactMeasurementFinancialPlan.numberOfProjects,
       numberOfOrganizations:
         financialPlanAndUser.impactMeasurementFinancialPlan.numberOfOrganizations,
-      companyType: financialPlanAndUser.impactMeasurementFinancialPlan.companyType,
       measureGoal: financialPlanAndUser.impactMeasurementFinancialPlan.measureGoal,
       onboardingType: financialPlanAndUser.impactMeasurementFinancialPlan.onboardingType,
+      numberOfEbookReports:
+        financialPlanAndUser.impactMeasurementFinancialPlan.numberOfEbookReports,
+      numberOfPDFReports: financialPlanAndUser.impactMeasurementFinancialPlan.numberOfPDFReports,
+      numberOfReadableReports:
+        financialPlanAndUser.impactMeasurementFinancialPlan.numberOfReadableReports,
+      numberOfExecutiveReports:
+        financialPlanAndUser.impactMeasurementFinancialPlan.numberOfExecutiveReports,
+      numberOfOnePagerReports:
+        financialPlanAndUser.impactMeasurementFinancialPlan.numberOfOnePagerReports,
+      numberOfDashboardReports:
+        financialPlanAndUser.impactMeasurementFinancialPlan.numberOfDashboardReports,
     })
 
     const [minTotalPrice, maxTotalPrice] = getMinAndMaxLimits(totalFinancialPlan)
 
     const result = await this.hubspotClient.sendFinancialPlan(
       {
-        companyType,
+        companyType: financialPlanAndUser.impactMeasurementFinancialPlan.companyType,
         country: financialPlanAndUser.user.country,
         firstname: financialPlanAndUser.user.firstname,
         lastname: financialPlanAndUser.user.lastname,
