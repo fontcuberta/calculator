@@ -57,7 +57,7 @@ const Home = () => {
   const [numberOfOnePagerReports, setNumberOfOnePagerReports] = useState(1)
   const [numberOfDashboardReports, setNumberOfDashboardReports] = useState(1)
   const [measureGoal, setMeasureGoal] = useState(MeasureGoal.INSIGHTS_FINDING)
-  const [onboardingType, setOnboardingType] = useState(OnboardingType.CUSTOMIZED)
+  const [onboardingType, setOnboardingType] = useState(OnboardingType.NO_ONBOARDING)
 
   const marks = new Array(10)
     .fill(0)
@@ -77,7 +77,7 @@ const Home = () => {
         numberOfExecutiveReports,
         numberOfOnePagerReports,
         numberOfDashboardReports,
-        onboardingType
+        onboardingType,
       },
       user: {
         country: customerCountry,
@@ -415,7 +415,7 @@ const Home = () => {
         <style jsx>{`
           .survey-section {
             padding: 5% 5%;
-            background-color: #ccc;
+            background-color: #e0dede;
             margin: 1%;
             border-radius: 1%;
           }

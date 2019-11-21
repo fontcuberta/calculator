@@ -2,12 +2,8 @@ import { HubspotClient } from "../infrastructure/hubspotClient"
 import {
   getMinAndMaxLimits,
   calculateTotalFinancialPlan,
-  CompanyType,
-  MeasureGoal,
-  OnboardingType,
   ImpactMeasurementFinancialPlan,
 } from "../domain/CalculateTotalFinancialPlan"
-import { StringLiteral } from "@babel/types"
 
 export type User = {
   country: string
