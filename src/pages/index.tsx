@@ -92,6 +92,7 @@ const Home = () => {
       body: JSON.stringify(financialPlanAndUser),
     })
     alert("This is done") // TODO: Add proper routing here
+    console.log("Fetched to the backend") // TODO: Add proper routing here
   }
 
   return (
