@@ -97,7 +97,7 @@ const Home = () => {
     <div>
       <MuiThemeProvider theme={THEME}>
         <Head>
-          <title>Cuantix Calculator</title>
+          <title>Cotizador Cuantix</title>
           <link rel="icon" href="favicon.ico" />
         </Head>
         <React.Fragment>
@@ -105,7 +105,7 @@ const Home = () => {
           <CssBaseline />
           <Container maxWidth="md">
             <div className="hero">
-              <h1 className="title">Cuantix Calculator</h1>
+              <h1 className="title">Cotizador Cuantix</h1>
               <h2>
                 ¿Quieres saber cuánto podría costar tu medición? Contesta algunas preguntas y te
                 enviaremos un presupuesto estimado.
