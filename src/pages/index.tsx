@@ -91,6 +91,7 @@ const Home = () => {
       method: "POST",
       body: JSON.stringify(financialPlanAndUser),
     })
+    alert("This is done") // TODO: Add proper routing here
   }
 
   return (
