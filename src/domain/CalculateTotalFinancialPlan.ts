@@ -107,6 +107,9 @@ function getOnboardingUnitPrice(companyType: CompanyType, onboardingType: Onboar
     if (onboardingType === OnboardingType.CUSTOMIZED) {
       return 1603
     }
+    if (onboardingType === OnboardingType.NO_ONBOARDING) {
+      return 0
+    }
   } else {
     if (onboardingType === OnboardingType.THEORY_OF_CHANGE) {
       return 802
@@ -119,6 +122,9 @@ function getOnboardingUnitPrice(companyType: CompanyType, onboardingType: Onboar
     }
     if (onboardingType === OnboardingType.CUSTOMIZED) {
       return 1602
+    }
+    if (onboardingType === OnboardingType.NO_ONBOARDING) {
+      return 0
     }
   }
   throw new Error(`getOnboardingUnitPrice not implemented for ${companyType} and ${onboardingType}`)
