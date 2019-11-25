@@ -64,6 +64,30 @@ function isImpactMeasurementFinancialPlan(
   if (typeof impactMeasurementFinancialPlan.numberOfProjects !== "number") {
     return false
   }
+  if (typeof impactMeasurementFinancialPlan.numberOfBeneficiaries !== "number") {
+    return false
+  }
+  if (typeof impactMeasurementFinancialPlan.dataCollectionType !== "string") {
+    return false
+  }
+  if (typeof impactMeasurementFinancialPlan.numberOfEbookReports !== "number") {
+    return false
+  }
+  if (typeof impactMeasurementFinancialPlan.numberOfPDFReports !== "number") {
+    return false
+  }
+  if (typeof impactMeasurementFinancialPlan.numberOfReadableReports !== "number") {
+    return false
+  }
+  if (typeof impactMeasurementFinancialPlan.numberOfExecutiveReports !== "number") {
+    return false
+  }
+  if (typeof impactMeasurementFinancialPlan.numberOfOnePagerReports !== "number") {
+    return false
+  }
+  if (typeof impactMeasurementFinancialPlan.numberOfDashboardReports !== "number") {
+    return false
+  }
   if (typeof impactMeasurementFinancialPlan.onboardingType !== "string") {
     return false
   }

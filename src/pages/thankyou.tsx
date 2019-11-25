@@ -47,7 +47,15 @@ const Thankyou = () => {
           <Navigator />
           <CssBaseline />
           <Container maxWidth="md">
-            <h1>Thank you</h1>
+            <h1>¡Muchas gracias por usar el Cotizador de Cuantix!</h1>
+            <h3>
+              Estamos encantados de ayudarte a crear tu primer presupuesto. A continuación, revisa
+              tu correo electrónico para que veas tu presupuesto
+            </h3>
+            <h5>
+              Si necesitas ponerte en contacto con nosotros, por favor, envía un correo a{" "}
+              <a href="mailto: giselle.gil@icuantix.com">giselle.gil@icuantix.com</a>
+            </h5>
           </Container>
         </React.Fragment>
 

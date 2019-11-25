@@ -1,8 +1,10 @@
 import fetch from "node-fetch"
 
 type FinancialPlan = {
-  minTotalPrice: number
-  maxTotalPrice: number
+  onboardingTotalPrice: number
+  platformTotalPrice: number
+  dataCollectionTotalPrice: number
+  reportingTotalPrice: number
 }
 
 type User = {
@@ -23,8 +25,10 @@ export class HubspotClient {
   async sendFinancialPlan(user: User, financialPlan: FinancialPlan): Promise<object> {
     console.log("Sending to backend")
     console.log({
-      min_total_price: financialPlan.minTotalPrice,
-      max_total_price: financialPlan.maxTotalPrice,
+      onboarding_total_price: financialPlan.onboardingTotalPrice,
+      platform_total_price: financialPlan.platformTotalPrice,
+      data_collection_total_price: financialPlan.dataCollectionTotalPrice,
+      reporting_total_price: financialPlan.reportingTotalPrice,
       lastname: user.lastname,
       firstname: user.firstname,
       email: user.email,
@@ -39,8 +43,13 @@ export class HubspotClient {
         method: "POST",
         body: JSON.stringify({
           properties: [
-            { property: "min_total_price", value: financialPlan.minTotalPrice },
-            { property: "max_total_price", value: financialPlan.maxTotalPrice },
+            { property: "onboarding_total_price", value: financialPlan.onboardingTotalPrice },
+            { property: "platform_total_price", value: financialPlan.platformTotalPrice },
+            {
+              property: "data_collection_total_price",
+              value: financialPlan.dataCollectionTotalPrice,
+            },
+            { property: "reporting_total_price", value: financialPlan.reportingTotalPrice },
             { property: "lastname", value: user.lastname },
             { property: "firstname", value: user.firstname },
             { property: "email", value: user.email },

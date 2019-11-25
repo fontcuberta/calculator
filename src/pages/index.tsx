@@ -23,6 +23,7 @@ import {
   CompanyType,
   CompanyDescription,
   MeasureGoal,
+  DataCollectionType,
   OnboardingType,
 } from "../domain/CalculateTotalFinancialPlan"
 
@@ -70,20 +71,28 @@ const Home = () => {
   const [customerEmail, setCustomerEmail] = useState("")
   const [customerPhone, setCustomerPhone] = useState("")
   const [customerCountry, setCustomerCountry] = useState("")
-  const [numberOfOrganizations, setNumberOfOrganizations] = useState(1)
-  const [numberOfProjects, setNumberOfProjects] = useState(1)
-  const [numberOfEbookReports, setNumberOfEbookReports] = useState(1)
-  const [numberOfPDFReports, setNumberOfPDFReports] = useState(1)
-  const [numberOfReadableReports, setNumberOfReadableReports] = useState(1)
-  const [numberOfExecutiveReports, setNumberOfExecutiveReports] = useState(1)
-  const [numberOfOnePagerReports, setNumberOfOnePagerReports] = useState(1)
-  const [numberOfDashboardReports, setNumberOfDashboardReports] = useState(1)
+  const [numberOfOrganizations, setNumberOfOrganizations] = useState(0)
+  const [numberOfProjects, setNumberOfProjects] = useState(0)
+  const [numberOfBeneficiaries, setNumberOfBeneficiaries] = useState(0)
+  const [dataCollectionType, setDataCollectionType] = useState(DataCollectionType.WHATSAPP)
+  const [numberOfEbookReports, setNumberOfEbookReports] = useState(0)
+  const [numberOfPDFReports, setNumberOfPDFReports] = useState(0)
+  const [numberOfReadableReports, setNumberOfReadableReports] = useState(0)
+  const [numberOfExecutiveReports, setNumberOfExecutiveReports] = useState(0)
+  const [numberOfOnePagerReports, setNumberOfOnePagerReports] = useState(0)
+  const [numberOfDashboardReports, setNumberOfDashboardReports] = useState(0)
   const [measureGoal, setMeasureGoal] = useState(MeasureGoal.INSIGHTS_FINDING)
   const [onboardingType, setOnboardingType] = useState(OnboardingType.NO_ONBOARDING)
 
   const marks = new Array(10)
     .fill(0)
     .map((_, i) => i + 1)
+    .map(i => ({ value: i, label: i.toString() }))
+
+  const marksBeneficiaries = new Array(11)
+    .fill(0)
+    .map((_, i) => i * 100)
+    .slice(1)
     .map(i => ({ value: i, label: i.toString() }))
 
   const handleSubmit = () => {
@@ -93,6 +102,8 @@ const Home = () => {
         measureGoal,
         numberOfOrganizations,
         numberOfProjects,
+        numberOfBeneficiaries,
+        dataCollectionType,
         numberOfEbookReports,
         numberOfPDFReports,
         numberOfReadableReports,
@@ -165,7 +176,7 @@ const Home = () => {
                 </div>
 
                 <div className="survey-section">
-                  <h3>Queremos conocer cómo tienes pensado tu medición de acuerdo a tu proyecto</h3>
+                  <h3>Queremos conocer cómo tienes pensada tu medición de acuerdo a tu proyecto</h3>
                   <div className="selector">
                     <InputLabel>¿Con qué objetivo quieres realizar la medición?</InputLabel>
                     <FormControl>
@@ -261,6 +272,58 @@ const Home = () => {
                       <FormHelperText>
                         El proceso de onboarding con nuestros consultores te ayudara a conseguir la
                         mejor medición para tu proyecto
+                      </FormHelperText>
+                    </FormControl>
+                  </div>
+                </div>
+                <div className="survey-section">
+                  <h3>Queremos conocer el alcance del proyecto</h3>
+                  <Typography gutterBottom>
+                    ¿Cuántos beneficiarios tiene tu proyecto aproximadamente?
+                  </Typography>
+                  <div className="slider">
+                    <Slider
+                      value={numberOfBeneficiaries}
+                      color="primary"
+                      defaultValue={1000}
+                      step={100}
+                      min={100}
+                      max={1000}
+                      marks={marksBeneficiaries}
+                      valueLabelDisplay="on"
+                      onChange={(_event, newValue) => {
+                        if (!Array.isArray(newValue)) {
+                          setNumberOfBeneficiaries(newValue)
+                        }
+                      }}
+                    />
+                  </div>
+                  <div className="selector">
+                    <InputLabel>
+                      ¿Dirías que tus beneficiarios pertenecen cuál de estas categorías?
+                    </InputLabel>
+                    <FormControl>
+                      <Select
+                        id="dataCollectionType"
+                        value={dataCollectionType}
+                        onChange={bindEventValueTo(setDataCollectionType)}
+                      >
+                        <MenuItem value={DataCollectionType.WHATSAPP}>
+                          Mis beneficiarios tienen más de 15 años y poseen acceso a un teléfono
+                          inteligente
+                        </MenuItem>
+                        <MenuItem value={DataCollectionType.CALL}>
+                          Mis beneficiarios tienen más de 15 años, NO poseen acceso a tecnología y
+                          no tengo contacto en persona con ellos
+                        </MenuItem>
+                        <MenuItem value={DataCollectionType.OFFLINE}>
+                          Tengo contacto en persona con mis beneficiarios y puedo levantar
+                          información en campo, o son jóvenes o niños y debo levantar información en
+                          papel
+                        </MenuItem>
+                      </Select>
+                      <FormHelperText>
+                        Con esto determinamos la mejor forma de hacer el levantamiento de datos
                       </FormHelperText>
                     </FormControl>
                   </div>

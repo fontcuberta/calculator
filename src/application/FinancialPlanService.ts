@@ -1,6 +1,5 @@
 import { HubspotClient } from "../infrastructure/hubspotClient"
 import {
-  getMinAndMaxLimits,
   calculateTotalFinancialPlan,
   ImpactMeasurementFinancialPlan,
 } from "../domain/CalculateTotalFinancialPlan"
@@ -25,13 +24,21 @@ export class FinancialPlanService {
   }
 
   async calculateTotalFinancialPlanAndSave(financialPlanAndUser: FinancialPlanAndUser) {
-    const totalFinancialPlan = calculateTotalFinancialPlan({
+    const [
+      onboardingTotalPrice,
+      platformTotalPrice,
+      dataCollectionTotalPrice,
+      reportingTotalPrice,
+    ] = calculateTotalFinancialPlan({
       companyType: financialPlanAndUser.impactMeasurementFinancialPlan.companyType,
       numberOfProjects: financialPlanAndUser.impactMeasurementFinancialPlan.numberOfProjects,
+      numberOfBeneficiaries:
+        financialPlanAndUser.impactMeasurementFinancialPlan.numberOfOrganizations,
       numberOfOrganizations:
         financialPlanAndUser.impactMeasurementFinancialPlan.numberOfOrganizations,
       measureGoal: financialPlanAndUser.impactMeasurementFinancialPlan.measureGoal,
       onboardingType: financialPlanAndUser.impactMeasurementFinancialPlan.onboardingType,
+      dataCollectionType: financialPlanAndUser.impactMeasurementFinancialPlan.dataCollectionType,
       numberOfEbookReports:
         financialPlanAndUser.impactMeasurementFinancialPlan.numberOfEbookReports,
       numberOfPDFReports: financialPlanAndUser.impactMeasurementFinancialPlan.numberOfPDFReports,
@@ -45,8 +52,6 @@ export class FinancialPlanService {
         financialPlanAndUser.impactMeasurementFinancialPlan.numberOfDashboardReports,
     })
 
-    const [minTotalPrice, maxTotalPrice] = getMinAndMaxLimits(totalFinancialPlan)
-
     const result = await this.hubspotClient.sendFinancialPlan(
       {
         companyType: financialPlanAndUser.impactMeasurementFinancialPlan.companyType,
@@ -56,8 +61,10 @@ export class FinancialPlanService {
         email: financialPlanAndUser.user.email,
       },
       {
-        minTotalPrice,
-        maxTotalPrice,
+        onboardingTotalPrice,
+        platformTotalPrice,
+        dataCollectionTotalPrice,
+        reportingTotalPrice,
       },
     )
 

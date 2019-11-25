@@ -26,11 +26,19 @@ export enum OnboardingType {
   NO_ONBOARDING = "Sin Onboarding",
 }
 
+export enum DataCollectionType {
+  CALL = "Mis beneficiarios tienen más de 15 años, NO poseen acceso a tecnología y no tengo contacto en persona con ellos",
+  WHATSAPP = "Mis beneficiarios tienen más de 15 años y poseen acceso a un teléfono inteligente",
+  OFFLINE = "Tengo contacto en persona con mis beneficiarios y puedo levantar información en campo, o son jóvenes o niños y debo levantar información en papel",
+}
+
 export type ImpactMeasurementFinancialPlan = {
   companyType: CompanyType
   measureGoal: MeasureGoal
   numberOfOrganizations: number
   numberOfProjects: number
+  numberOfBeneficiaries: number
+  dataCollectionType: DataCollectionType
   numberOfEbookReports: number
   numberOfPDFReports: number
   numberOfReadableReports: number
@@ -49,9 +57,6 @@ const READABLE_REPORT_UNIT_PRICE = 1500
 const EXECUTIVE_REPORT_UNIT_PRICE = 700
 const ONEPAGER_REPORT_UNIT_PRICE = 400
 const DASHBOARD_REPORT_UNIT_PRICE = 300
-
-const PERCENTAGE_LOWER_LIMIT = 80
-const PERCENTAGE_UPPER_LIMIT = 120
 
 export function calculateTotalFinancialPlan(
   impactMeasurementFinancialPlan: ImpactMeasurementFinancialPlan,
@@ -77,7 +82,12 @@ export function calculateTotalFinancialPlan(
   )
   const dashboardBasePrice = EXPECTED_DASHBOARDS_SELECTED * dashboardUnitPrice
   const totalPlatformPrice = projectBasePrice + dashboardBasePrice
-  const totalDataCollectionPrice = 9500
+  const totalDataCollectionPrice = getTotalDataCollectionPrice(
+    impactMeasurementFinancialPlan.numberOfProjects,
+    impactMeasurementFinancialPlan.numberOfBeneficiaries,
+    impactMeasurementFinancialPlan.dataCollectionType,
+  )
+
   const totalReportingPrice =
     impactMeasurementFinancialPlan.numberOfEbookReports * EBOOK_REPORT_UNIT_PRICE +
     impactMeasurementFinancialPlan.numberOfPDFReports * PDF_REPORT_UNIT_PRICE +
@@ -86,13 +96,23 @@ export function calculateTotalFinancialPlan(
     impactMeasurementFinancialPlan.numberOfOnePagerReports * ONEPAGER_REPORT_UNIT_PRICE +
     impactMeasurementFinancialPlan.numberOfDashboardReports * DASHBOARD_REPORT_UNIT_PRICE
 
-  const totalFinancialPlan =
-    totalOnboardingPrice + totalPlatformPrice + totalDataCollectionPrice + totalReportingPrice
-  // TODO: Enviar a hubspot cada uno de los totales por rubro
-
-  return totalFinancialPlan
+  return [totalOnboardingPrice, totalPlatformPrice, totalDataCollectionPrice, totalReportingPrice]
 }
 
+function getTotalDataCollectionPrice(
+  numberOfProjects: number,
+  numberOfBeneficiaries: number,
+  dataCollectionType: DataCollectionType,
+) {
+  if (dataCollectionType === DataCollectionType.WHATSAPP) {
+    if (numberOfBeneficiaries <= 100) {
+      return numberOfProjects * 600
+    } else {
+      return numberOfProjects * (0.03 * (numberOfBeneficiaries - 500) + 600)
+    }
+  }
+  throw new Error(`getTotalDataCollectionPrice not implemented for ${dataCollectionType}`)
+}
 function getProjectBasePrice(numberOfProjects: number, projectUnitPrice: number) {
   return (numberOfProjects - 1) * projectUnitPrice
 }
@@ -175,11 +195,4 @@ function getOrganizationUnitPrice(companyType: CompanyType, measureGoal: Measure
     }
   }
   throw new Error(`getOrganizationUnitPrice not implemented for ${companyType} and ${measureGoal}`)
-}
-
-export function getMinAndMaxLimits(totalFinancialPlan: number) {
-  const minTotalFinancialPlan = Math.round(totalFinancialPlan * (PERCENTAGE_LOWER_LIMIT / 100)) //20% menos
-  const maxTotalFinancialPlan = Math.round(totalFinancialPlan * (PERCENTAGE_UPPER_LIMIT / 100)) //20% más
-
-  return [minTotalFinancialPlan, maxTotalFinancialPlan]
 }

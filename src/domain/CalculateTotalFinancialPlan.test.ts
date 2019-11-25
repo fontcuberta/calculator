@@ -4,6 +4,7 @@ import {
   MeasureGoal,
   OnboardingType,
   getMinAndMaxLimits,
+  DataCollectionType,
 } from "./CalculateTotalFinancialPlan"
 
 describe("CalculateTotalFinancialPlan", () => {
@@ -13,17 +14,19 @@ describe("CalculateTotalFinancialPlan", () => {
       measureGoal: MeasureGoal.INVESTMENT_DECISION,
       numberOfOrganizations: 3,
       numberOfProjects: 4,
+      numberOfBeneficiaries: 100,
+      dataCollectionType: DataCollectionType.WHATSAPP,
       numberOfEbookReports: 1,
-      numberOfPDFReports: 1,
-      numberOfReadableReports: 1,
-      numberOfExecutiveReports: 1,
-      numberOfOnePagerReports: 1,
-      numberOfDashboardReports: 1,
+      numberOfPDFReports: 0,
+      numberOfReadableReports: 0,
+      numberOfExecutiveReports: 0,
+      numberOfOnePagerReports: 0,
+      numberOfDashboardReports: 0,
       onboardingType: OnboardingType.THEORY_OF_CHANGE,
     }
 
     // This number is extracted from the calculations of the "Cotizador de precios" excel
-    const totalFinancialPlan = 62359
+    const totalFinancialPlan = 49509
 
     expect(calculateTotalFinancialPlan(customerData)).toEqual(totalFinancialPlan)
   })

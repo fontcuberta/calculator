@@ -16,7 +16,9 @@ export default function Links() {
   return (
     <div className="header">
       <div className="custom-logo">
-        <img src="logo-white.png" alt="cuantix" />
+        <a href="/index">
+          <img src="logo-white.png" alt="cuantix" />
+        </a>
       </div>
       <div className="menu">
         <Typography>
