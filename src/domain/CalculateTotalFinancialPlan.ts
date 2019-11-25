@@ -3,6 +3,11 @@ export enum CompanyType {
   COMPANY = "Empresa",
   NGO = "NGO",
 }
+export enum CompanyDescription {
+  NGO = "Organizaciones sin fines de lucro, pequeñas, medianas o grandes.",
+  COMPANY = "Empresa nacional: empresas pequeñas, medianas o grandes todavía en desarrollo o crecimiento.",
+  MULTINATIONAL = "Empresas grandes (retailers, bancos, Productos de consumo, entre otras) que poseen gran cantidad de grupos de interés nacionales e internacionales.",
+}
 
 export enum MeasureGoal {
   PUBLIC_POLICY = "Influir en políticas públicas",
@@ -37,7 +42,7 @@ export type ImpactMeasurementFinancialPlan = {
 
 const PROJECT_UNIT_PRICE = 1200
 const DASHBOARD_UNIT_PRICE = 250
-const EXPECTED_DASHBOARDS_SELECTED = 5
+const EXPECTED_DASHBOARDS_SELECTED = 1
 const EBOOK_REPORT_UNIT_PRICE = 2500
 const PDF_REPORT_UNIT_PRICE = 1800
 const READABLE_REPORT_UNIT_PRICE = 1500
@@ -70,7 +75,7 @@ export function calculateTotalFinancialPlan(
     impactMeasurementFinancialPlan.numberOfProjects,
     projectUnitPrice,
   )
-  const dashboardBasePrice = EXPECTED_DASHBOARDS_SELECTED * dashboardUnitPrice // TODO: Establecer qué vamos a hacer con este cálculo para no preguntar al usuario esto
+  const dashboardBasePrice = EXPECTED_DASHBOARDS_SELECTED * dashboardUnitPrice
   const totalPlatformPrice = projectBasePrice + dashboardBasePrice
   const totalDataCollectionPrice = 9500
   const totalReportingPrice =
@@ -83,13 +88,12 @@ export function calculateTotalFinancialPlan(
 
   const totalFinancialPlan =
     totalOnboardingPrice + totalPlatformPrice + totalDataCollectionPrice + totalReportingPrice
-  // TODO: Establecer qué vamos a hacer con medición de levantamiento de información
+  // TODO: Enviar a hubspot cada uno de los totales por rubro
 
   return totalFinancialPlan
 }
 
 function getProjectBasePrice(numberOfProjects: number, projectUnitPrice: number) {
-  // TODO: revisar qué pasa con este total
   return (numberOfProjects - 1) * projectUnitPrice
 }
 

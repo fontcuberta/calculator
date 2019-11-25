@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import Router from "next/router"
 import Navigator from "../components/Navigator"
 import Head from "next/head"
 import {
@@ -18,10 +19,31 @@ import {
 } from "@material-ui/core"
 import { Slider, Typography } from "@material-ui/core"
 import { FinancialPlanAndUser } from "../application/FinancialPlanService"
-import { CompanyType, MeasureGoal, OnboardingType } from "../domain/CalculateTotalFinancialPlan"
+import {
+  CompanyType,
+  CompanyDescription,
+  MeasureGoal,
+  OnboardingType,
+} from "../domain/CalculateTotalFinancialPlan"
 
-const bindEventValueTo = (eventHandelerFn: any) => (event: any) =>
+let companyInfo = CompanyDescription.MULTINATIONAL
+
+const bindEventValueTo = (eventHandelerFn: any) => (event: any) => {
   eventHandelerFn(event.target.value)
+  updateCompanyInfo(event.target.value)
+}
+
+const updateCompanyInfo = (eventValue: any) => {
+  if (eventValue === CompanyType.NGO) {
+    companyInfo = CompanyDescription.NGO
+  }
+  if (eventValue === CompanyType.MULTINATIONAL_CORPORATION) {
+    companyInfo = CompanyDescription.MULTINATIONAL
+  }
+  if (eventValue === CompanyType.COMPANY) {
+    companyInfo = CompanyDescription.COMPANY
+  }
+}
 
 const THEME = createMuiTheme({
   typography: {
@@ -91,8 +113,7 @@ const Home = () => {
       method: "POST",
       body: JSON.stringify(financialPlanAndUser),
     })
-    alert("This is done") // TODO: Add proper routing here
-    console.log("Fetched to the backend") // TODO: Add proper routing here
+    Router.push("/thankyou")
   }
 
   return (
@@ -114,32 +135,39 @@ const Home = () => {
               </h2>
               <form noValidate autoComplete="off">
                 <div className="survey-section">
-                  <h3>Háblanos un poco de tu empresa</h3>
-                  <div className="selector">
-                    <InputLabel>Tu empresa es...</InputLabel>
-                    <FormControl>
-                      <Select
-                        id="companyType"
-                        value={companyType}
-                        onChange={bindEventValueTo(setCompanyType)}
-                      >
-                        <MenuItem value={CompanyType.MULTINATIONAL_CORPORATION}>
-                          Multinacional / Corporación
-                        </MenuItem>
-                        <MenuItem value={CompanyType.COMPANY}>Empresa</MenuItem>
-                        <MenuItem value={CompanyType.NGO}>NGO</MenuItem>
-                      </Select>
-                      <FormHelperText>
-                        Selecciona la opción que mejor describe a tu empresa
-                      </FormHelperText>
-                    </FormControl>
+                  <div className="section-title">
+                    <h3>Háblanos un poco de tu organización, ¿cómo te defines?</h3>
+                  </div>
+                  <div className="question">
+                    <div className="selector1">
+                      <InputLabel>Tu empresa es...</InputLabel>
+                      <FormControl>
+                        <Select
+                          id="companyType"
+                          value={companyType}
+                          onChange={bindEventValueTo(setCompanyType)}
+                        >
+                          <MenuItem value={CompanyType.MULTINATIONAL_CORPORATION}>
+                            Multinacional / Corporación
+                          </MenuItem>
+                          <MenuItem value={CompanyType.COMPANY}>Empresa</MenuItem>
+                          <MenuItem value={CompanyType.NGO}>NGO</MenuItem>
+                        </Select>
+                        <FormHelperText>
+                          Selecciona la opción que mejor describe a tu empresa
+                        </FormHelperText>
+                      </FormControl>
+                    </div>
+                    <div className="info-section">
+                      <p>{companyInfo}</p>
+                    </div>
                   </div>
                 </div>
 
                 <div className="survey-section">
-                  <h3>Cuéntanos sobre tu medición</h3>
+                  <h3>Queremos conocer cómo tienes pensado tu medición de acuerdo a tu proyecto</h3>
                   <div className="selector">
-                    <InputLabel>¿Cuál es el objetivo de la medición?</InputLabel>
+                    <InputLabel>¿Con qué objetivo quieres realizar la medición?</InputLabel>
                     <FormControl>
                       <Select
                         id="measureGoal"
@@ -206,7 +234,10 @@ const Home = () => {
                     />
                   </div>
                   <div className="selector">
-                    <InputLabel>¿Cómo quieres hacer el onboarding?</InputLabel>
+                    <InputLabel>
+                      Ofrecemos diferentes métodos para hacer el diseño de tu medición, unos más
+                      personalizados que otros, ¿cuál te gustaría?
+                    </InputLabel>
                     <FormControl>
                       <Select
                         id="onboardingType"
@@ -415,11 +446,23 @@ const Home = () => {
         </React.Fragment>
 
         <style jsx>{`
+          .question {
+            display: flex;
+          }
+          .info-section {
+            float: right;
+            width: 30%;
+            height: 200px;
+            background-color: grey;
+          }
+          .section-title {
+            background-color: #f0eded;
+            padding: 0.5%;
+            marging: 1%;
+          }
           .survey-section {
-            padding: 5% 5%;
-            background-color: #e0dede;
+            padding: 2% 2%;
             margin: 1%;
-            border-radius: 1%;
           }
           .button-div {
             margin: 7% 0;
@@ -440,6 +483,11 @@ const Home = () => {
           .title,
           .description {
             text-align: center;
+          }
+          .selector1 {
+            float: left;
+            margin-top: 20px;
+            width: 70%;
           }
           .selector {
             margin-top: 20px;
