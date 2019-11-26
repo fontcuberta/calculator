@@ -552,6 +552,7 @@ const Home = () => {
                           onChange={bindEventValueTo(setCustomerCountry)}
                         >
                           <MenuItem value={CustomerCountry.ARGENTINA}>Argentina</MenuItem>
+                          <MenuItem value={CustomerCountry.BOLIVIA}>Bolivia</MenuItem>
                           <MenuItem value={CustomerCountry.BRASIL}>Brasil</MenuItem>
                           <MenuItem value={CustomerCountry.COLOMBIA}>Colombia</MenuItem>
                           <MenuItem value={CustomerCountry.COSTA_RICA}>Costa Rica</MenuItem>
@@ -560,6 +561,8 @@ const Home = () => {
                           <MenuItem value={CustomerCountry.MEXICO}>México</MenuItem>
                           <MenuItem value={CustomerCountry.PANAMA}>Panamá</MenuItem>
                           <MenuItem value={CustomerCountry.PARAGUAY}>Paraguay</MenuItem>
+                          <MenuItem value={CustomerCountry.PERU}>Perú</MenuItem>
+                          <MenuItem value={CustomerCountry.URUGUAY}>Uruguay</MenuItem>
                           <MenuItem value={CustomerCountry.VENEZUELA}>Venezuela</MenuItem>
                         </Select>
                         <FormHelperText>

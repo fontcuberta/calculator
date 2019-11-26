@@ -35,14 +35,16 @@ export enum OnboardingType {
 
 export enum CustomerCountry {
   ARGENTINA = "Argentina",
+  BOLIVIA = "Bolivia",
   BRASIL = "Brasil",
+  CHILE = "Chile",
   COLOMBIA = "Colombia",
   COSTA_RICA = "Costa Rica",
-  CHILE = "Chile",
   ECUADOR = "Ecuador",
   MEXICO = "México",
   PANAMA = "Panamá",
   PARAGUAY = "Paraguay",
+  PERU = "Perú",
   URUGUAY = "Uruguay",
   VENEZUELA = "Venezuela",
 }
