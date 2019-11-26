@@ -115,11 +115,14 @@ function getTotalDataCollectionPrice(
     if (numberOfBeneficiaries <= 100) {
       return numberOfProjects * 600
     } else {
-      return numberOfProjects * (0.03 * (numberOfBeneficiaries - 500) + 600)
+      return numberOfProjects * (0.05 * 5 * (numberOfBeneficiaries - 100) + 600)
     }
   }
   if (dataCollectionType === DataCollectionType.OFFLINE) {
     return 0 // Data Collection on paper is included in the platform total
+  }
+  if (dataCollectionType === DataCollectionType.CALL) {
+    return numberOfBeneficiaries * 15
   }
   throw new Error(`getTotalDataCollectionPrice not implemented for ${dataCollectionType}`)
 }
