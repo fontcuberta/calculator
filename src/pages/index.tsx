@@ -483,7 +483,7 @@ const Home = () => {
                 </div>
 
                 <div className="survey-section">
-                  <h3>Finalmente, ¿cómo te contactamos?</h3>
+                  <h3>Finalmente, ¿a dónde te gustaría que enviaramos tu presupuesto?</h3>
                   <TextField
                     id="customerName"
                     label="Nombre"

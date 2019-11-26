@@ -5,12 +5,12 @@ export enum CompanyType {
 }
 export enum CompanyDescription {
   NGO = "Organizaciones sin fines de lucro, pequeñas, medianas o grandes.",
-  COMPANY = "Empresa nacional: empresas pequeñas, medianas o grandes todavía en desarrollo o crecimiento.",
+  COMPANY = "Empresa nacional pequeña, mediana o grande todavía en desarrollo o crecimiento.",
   MULTINATIONAL = "Empresas grandes (retailers, bancos, Productos de consumo, entre otras) que poseen gran cantidad de grupos de interés nacionales e internacionales.",
 }
 export enum OnboardingDescription {
   NO_ONBOARDING = "No necesitas ningún apoyo en la planificación de tu medición en nuestra plataforma",
-  THEORY_OF_CHANGE = "Empresa nacional: empresas pequeñas, medianas o grandes todavía en desarrollo o crecimiento.",
+  THEORY_OF_CHANGE = "No tienes nuestra teoría del cambio y te gustaría desarrollarla con nosotros, pero no estamos listos para desarrollar todo el plan de medición.",
   GROUP_WEBINAR = "El proceso del diseño de la medición se realiza en conjunto con otras organizaciones a través de webinars.",
   INDIVIDUAL_WEBINAR = "Realizas el proceso de medición individualmente siguiendo webinars online no personalizados.",
   CUSTOMIZED = "El proceso del diseño de la medición se realiza uno a uno contigo con un consultor asignado para tus necesidades",
