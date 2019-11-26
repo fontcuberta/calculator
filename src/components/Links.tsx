@@ -23,8 +23,9 @@ export default function Links() {
       <div className="menu">
         <Typography>
           <Link
-            href="#"
-            onClick={preventDefault}
+            href="https://www.icuantix.com/equipo"
+            target="_blank"
+            rel="noopener"
             color="inherit"
             underline="none"
             className={classes.link}
@@ -32,8 +33,9 @@ export default function Links() {
             {"Nuestro Equipo"}
           </Link>
           <Link
-            href="#"
-            onClick={preventDefault}
+            href="https://blog.icuantix.com/noticias"
+            target="_blank"
+            rel="noopener"
             color="inherit"
             underline="none"
             className={classes.link}
@@ -41,8 +43,9 @@ export default function Links() {
             {"Noticias"}
           </Link>
           <Link
-            href="#"
-            onClick={preventDefault}
+            href="https://www.icuantix.com/recursosdemediciondeimpacto"
+            target="_blank"
+            rel="noopener"
             color="inherit"
             underline="none"
             className={classes.link}
@@ -50,8 +53,9 @@ export default function Links() {
             {"Recursos"}
           </Link>
           <Link
-            href="#"
-            onClick={preventDefault}
+            href="http://app.icuantix.com/"
+            target="_blank"
+            rel="noopener"
             color="inherit"
             underline="none"
             className={classes.link}
@@ -59,8 +63,9 @@ export default function Links() {
             {"Blog"}
           </Link>
           <Link
-            href="#"
-            onClick={preventDefault}
+            href="https://app.icuantix.com/login"
+            target="_blank"
+            rel="noopener"
             color="inherit"
             underline="none"
             className={classes.link}

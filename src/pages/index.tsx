@@ -168,13 +168,15 @@ const Home = () => {
               <form noValidate autoComplete="off">
                 <div className="survey-section">
                   <div className="section-title">
-                    <h3>Háblanos un poco de tu organización, ¿cómo te defines?</h3>
+                    <img src="icons/company.svg" />
+                    <h2>Cuéntanos un poco sobre tu organización, ¿cómo la defines?</h2>
                   </div>
                   <div className="question">
                     <div className="selector-with-info">
                       <InputLabel>Tu empresa es...</InputLabel>
-                      <FormControl>
+                      <FormControl fullWidth>
                         <Select
+                          fullWidth
                           id="companyType"
                           value={companyType}
                           onChange={bindEventValueTo(setCompanyType)}
@@ -197,9 +199,16 @@ const Home = () => {
                 </div>
 
                 <div className="survey-section">
-                  <h3>Queremos conocer cómo tienes pensada tu medición de acuerdo a tu proyecto</h3>
+                  <div className="section-title">
+                    <img src="icons/measurement.svg" />
+                    <h2>
+                      Queremos conocer cómo tienes pensada tu medición de acuerdo a tu proyecto
+                    </h2>
+                  </div>
                   <div className="selector">
-                    <InputLabel>¿Con qué objetivo quieres realizar la medición?</InputLabel>
+                    <InputLabel className="input-label">
+                      ¿Con qué objetivo quieres realizar la medición?
+                    </InputLabel>
                     <FormControl>
                       <Select
                         id="measureGoal"
@@ -227,27 +236,26 @@ const Home = () => {
                     </FormControl>
                   </div>
                   <div className="selector">
-                    <InputLabel>
+                    <InputLabel className="input-label">
                       ¿Cuántas organizaciones intervienen en la creación y captura de datos del
                       proyecto?
                     </InputLabel>
-                    <TextField
-                      id="numberOfOrganizations"
-                      label="Organizaciones"
-                      type="number"
-                      InputProps={{ inputProps: { min: 1, max: 20 } }}
-                      value={numberOfOrganizations}
-                      onChange={event => {
-                        const number = parseInt(event.target.value)
-                        setNumberOfOrganizations(number)
-                      }}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                      margin="normal"
-                    />
+                    <FormControl>
+                      <TextField
+                        id="numberOfOrganizations"
+                        type="number"
+                        fullWidth
+                        InputProps={{ inputProps: { min: 1, max: 20 } }}
+                        value={numberOfOrganizations}
+                        onChange={event => {
+                          const number = parseInt(event.target.value)
+                          setNumberOfOrganizations(number)
+                        }}
+                        margin="normal"
+                      />
+                    </FormControl>
                   </div>
-                  <Typography gutterBottom>¿Cuántos proyectos quieres medir?</Typography>
+                  <InputLabel className="input-label">¿Cuántos proyectos quieres medir?</InputLabel>
                   <div className="slider">
                     <Slider
                       value={numberOfProjects}
@@ -299,13 +307,19 @@ const Home = () => {
                         </FormHelperText>
                       </FormControl>
                     </div>
-                    <div className="info-section-onboarding">
+                    <div className="info-section">
                       <p>{onboardingInfo}</p>
                     </div>
                   </div>
                 </div>
                 <div className="survey-section">
-                  <h3>Queremos conocer el alcance del proyecto</h3>
+                  <div className="section-title">
+                    <img src="icons/social-impact.svg" />
+                    <h2>
+                      Necesitamos saber el alcance de tus proyectos de impacto para ayudarte a
+                      levantar información
+                    </h2>
+                  </div>
                   <div className="selector">
                     <InputLabel>
                       ¿Cuántos beneficiarios tiene tu proyecto aproximadamente?
@@ -357,11 +371,14 @@ const Home = () => {
                 </div>
 
                 <div className="survey-section">
-                  <h3>
-                    Poseemos distintos tipos de reportes, los cuales puedes escoger a tu
-                    conveniencia según tus necesidades. ¿Cuáles y cuántos crees que te podrían
-                    ayudar a lograr tus metas?{" "}
-                  </h3>
+                  <div className="section-title">
+                    <img src="icons/reporting.svg" />
+                    <h2>
+                      Poseemos distintos tipos de reportes, los cuales puedes escoger a tu
+                      conveniencia según tus necesidades. ¿Cuáles y cuántos crees que te podrían
+                      ayudar a lograr tus metas?
+                    </h2>
+                  </div>
                   <div className="selector">
                     <InputLabel>
                       Informe externo con diseño - Formato ebook con manual de marca para descarga
@@ -482,52 +499,57 @@ const Home = () => {
                 </div>
 
                 <div className="survey-section">
-                  <h3>Finalmente, ¿a dónde te gustaría que enviaramos tu presupuesto?</h3>
-                  <TextField
-                    id="customerName"
-                    label="Nombre"
-                    value={customerName}
-                    onChange={bindEventValueTo(setCustomerName)}
-                    fullWidth
-                    required
-                    autoFocus
-                    margin="normal"
-                  />
-                  <TextField
-                    id="customerLastname"
-                    label="Apellido"
-                    value={customerLastname}
-                    onChange={bindEventValueTo(setCustomerLastname)}
-                    fullWidth
-                    required
-                    margin="normal"
-                  />
-                  <TextField
-                    id="customerEmail"
-                    label="Email"
-                    value={customerEmail}
-                    onChange={bindEventValueTo(setCustomerEmail)}
-                    fullWidth
-                    required
-                    margin="normal"
-                  />
-                  <TextField
-                    id="customerPhone"
-                    label="Número de Teléfono"
-                    value={customerPhone}
-                    onChange={bindEventValueTo(setCustomerPhone)}
-                    fullWidth
-                    required
-                    margin="normal"
-                  />
-                  <TextField
-                    id="customerCountry"
-                    label="País"
-                    value={customerCountry}
-                    onChange={bindEventValueTo(setCustomerCountry)}
-                    fullWidth
-                    margin="normal"
-                  />
+                  <div className="section-title">
+                    <img src="icons/sending.svg" />
+                    <h2>Finalmente, ¿a dónde te gustaría que enviaramos tu presupuesto?</h2>
+                  </div>
+                  <FormControl fullWidth>
+                    <TextField
+                      id="customerName"
+                      fullWidth
+                      label="Nombre"
+                      value={customerName}
+                      onChange={bindEventValueTo(setCustomerName)}
+                      required
+                      autoFocus
+                      margin="normal"
+                    />
+                    <TextField
+                      id="customerLastname"
+                      label="Apellido"
+                      value={customerLastname}
+                      onChange={bindEventValueTo(setCustomerLastname)}
+                      fullWidth
+                      required
+                      margin="normal"
+                    />
+                    <TextField
+                      id="customerEmail"
+                      label="Email"
+                      value={customerEmail}
+                      onChange={bindEventValueTo(setCustomerEmail)}
+                      fullWidth
+                      required
+                      margin="normal"
+                    />
+                    <TextField
+                      id="customerPhone"
+                      label="Número de Teléfono"
+                      value={customerPhone}
+                      onChange={bindEventValueTo(setCustomerPhone)}
+                      fullWidth
+                      required
+                      margin="normal"
+                    />
+                    <TextField
+                      id="customerCountry"
+                      label="País"
+                      value={customerCountry}
+                      onChange={bindEventValueTo(setCustomerCountry)}
+                      fullWidth
+                      margin="normal"
+                    />
+                  </FormControl>
                 </div>
                 <div className="button-div">
                   <Button variant="contained" color="secondary" onClick={handleSubmit}>
@@ -540,21 +562,13 @@ const Home = () => {
         </React.Fragment>
 
         <style jsx>{`
+          .input-label {
+            margin-top: 2%;
+          }
           .question {
             display: flex;
           }
           .info-section {
-            margin-left: -20%;
-            padding: 2%;
-            float: right;
-            width: 25%;
-            height: 190px;
-            background: linear-gradient(127.45deg, #d0c9c8 31.19%, rgba(240, 237, 237, 0) 155.12%);
-            border-radius: 4%;
-            font-style: italic;
-          }
-          .info-section-onboarding {
-            margin-left: 5%;
             padding: 2%;
             float: right;
             width: 25%;
@@ -564,12 +578,22 @@ const Home = () => {
             font-style: italic;
           }
           .section-title {
-            padding: 0.5%;
             marging: 1%;
+            display: flex;
+          }
+          .section-title img {
+            float: left;
+            width: 60px;
+            height: 60px;
+            marging: 3px;
+          }
+          .section-title h2 {
+            float: right;
+            margin-left: 5px;
           }
           .survey-section {
             padding: 2% 2%;
-            margin: 1%;
+            margin: 4%;
           }
           .button-div {
             margin: 7% 0;
@@ -592,6 +616,7 @@ const Home = () => {
             text-align: center;
           }
           .selector-with-info {
+            margin-right: 20px;
             float: left;
             margin-top: 20px;
             width: 70%;
@@ -601,7 +626,7 @@ const Home = () => {
             width: 100%;
           }
           .slider {
-            margin-top: 8%;
+            margin: 6% 2%;
           }
         `}</style>
       </MuiThemeProvider>
