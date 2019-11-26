@@ -5,6 +5,7 @@ type FinancialPlan = {
   platformTotalPrice: number
   dataCollectionTotalPrice: number
   reportingTotalPrice: number
+  totalPrice: number
 }
 
 type User = {
@@ -29,6 +30,7 @@ export class HubspotClient {
       platform_total_price: financialPlan.platformTotalPrice,
       data_collection_total_price: financialPlan.dataCollectionTotalPrice,
       reporting_total_price: financialPlan.reportingTotalPrice,
+      max_total_price: financialPlan.totalPrice,
       lastname: user.lastname,
       firstname: user.firstname,
       email: user.email,
@@ -50,6 +52,7 @@ export class HubspotClient {
               value: financialPlan.dataCollectionTotalPrice,
             },
             { property: "reporting_total_price", value: financialPlan.reportingTotalPrice },
+            { property: "max_total_price", value: financialPlan.totalPrice },
             { property: "lastname", value: user.lastname },
             { property: "firstname", value: user.firstname },
             { property: "email", value: user.email },

@@ -103,7 +103,16 @@ export function calculateTotalFinancialPlan(
     impactMeasurementFinancialPlan.numberOfOnePagerReports * ONEPAGER_REPORT_UNIT_PRICE +
     impactMeasurementFinancialPlan.numberOfDashboardReports * DASHBOARD_REPORT_UNIT_PRICE
 
-  return [totalOnboardingPrice, totalPlatformPrice, totalDataCollectionPrice, totalReportingPrice]
+  const totalPrice =
+    totalOnboardingPrice + totalPlatformPrice + totalDataCollectionPrice + totalReportingPrice
+
+  return [
+    totalOnboardingPrice,
+    totalPlatformPrice,
+    totalDataCollectionPrice,
+    totalReportingPrice,
+    totalPrice,
+  ]
 }
 
 function getTotalDataCollectionPrice(

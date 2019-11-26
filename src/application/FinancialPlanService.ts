@@ -29,6 +29,7 @@ export class FinancialPlanService {
       platformTotalPrice,
       dataCollectionTotalPrice,
       reportingTotalPrice,
+      totalPrice,
     ] = calculateTotalFinancialPlan({
       companyType: financialPlanAndUser.impactMeasurementFinancialPlan.companyType,
       numberOfProjects: financialPlanAndUser.impactMeasurementFinancialPlan.numberOfProjects,
@@ -65,6 +66,7 @@ export class FinancialPlanService {
         platformTotalPrice,
         dataCollectionTotalPrice,
         reportingTotalPrice,
+        totalPrice,
       },
     )
 

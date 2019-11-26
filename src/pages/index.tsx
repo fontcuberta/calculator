@@ -306,24 +306,23 @@ const Home = () => {
                 </div>
                 <div className="survey-section">
                   <h3>Queremos conocer el alcance del proyecto</h3>
-                  <Typography gutterBottom>
-                    ¿Cuántos beneficiarios tiene tu proyecto aproximadamente?
-                  </Typography>
-                  <div className="slider">
-                    <Slider
+                  <div className="selector">
+                    <InputLabel>
+                      ¿Cuántos beneficiarios tiene tu proyecto aproximadamente?
+                    </InputLabel>
+                    <TextField
+                      id="numberOfBeneficiaries"
+                      type="number"
+                      InputProps={{ inputProps: { min: 1, max: 10000000 } }}
                       value={numberOfBeneficiaries}
-                      color="primary"
-                      defaultValue={1000}
-                      step={100}
-                      min={100}
-                      max={1000}
-                      marks={marksBeneficiaries}
-                      valueLabelDisplay="on"
-                      onChange={(_event, newValue) => {
-                        if (!Array.isArray(newValue)) {
-                          setNumberOfBeneficiaries(newValue)
-                        }
+                      onChange={event => {
+                        const number = parseInt(event.target.value)
+                        setNumberOfBeneficiaries(number)
                       }}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                      margin="normal"
                     />
                   </div>
                   <div className="selector">
