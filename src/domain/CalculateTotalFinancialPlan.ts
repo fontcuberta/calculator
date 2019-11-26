@@ -33,6 +33,15 @@ export enum OnboardingType {
   NO_ONBOARDING = "Sin Onboarding",
 }
 
+export enum CustomerCountry {
+  ARGENTINA = "Argentina",
+  CHILE = "Chile",
+  MEXICO = "México",
+  COLOMBIA = "Colombia",
+  VENEZUELA = "Venezuela",
+  PANAMA = "Panamá",
+}
+
 export enum DataCollectionType {
   CALL = "Mis beneficiarios tienen más de 15 años, NO poseen acceso a tecnología y no tengo contacto en persona con ellos",
   WHATSAPP = "Mis beneficiarios tienen más de 15 años y poseen acceso a un teléfono inteligente",

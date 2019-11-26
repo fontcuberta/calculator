@@ -26,6 +26,7 @@ import {
   DataCollectionType,
   OnboardingType,
   OnboardingDescription,
+  CustomerCountry,
 } from "../domain/CalculateTotalFinancialPlan"
 
 let companyInfo = CompanyDescription.MULTINATIONAL
@@ -541,14 +542,27 @@ const Home = () => {
                       required
                       margin="normal"
                     />
-                    <TextField
-                      id="customerCountry"
-                      label="País"
-                      value={customerCountry}
-                      onChange={bindEventValueTo(setCustomerCountry)}
-                      fullWidth
-                      margin="normal"
-                    />
+                    <div className="selector">
+                      <FormControl fullWidth>
+                        <InputLabel>País</InputLabel>
+                        <Select
+                          fullWidth
+                          id="country"
+                          value={customerCountry}
+                          onChange={bindEventValueTo(setCustomerCountry)}
+                        >
+                          <MenuItem value={CustomerCountry.ARGENTINA}>Argentina</MenuItem>
+                          <MenuItem value={CustomerCountry.COLOMBIA}>Colombia</MenuItem>
+                          <MenuItem value={CustomerCountry.CHILE}>Chile</MenuItem>
+                          <MenuItem value={CustomerCountry.MEXICO}>México</MenuItem>
+                          <MenuItem value={CustomerCountry.PANAMA}>Panamá</MenuItem>
+                          <MenuItem value={CustomerCountry.VENEZUELA}>Venezuela</MenuItem>
+                        </Select>
+                        <FormHelperText>
+                          Selecciona el país dónde se encuentra la sede de tu empresa
+                        </FormHelperText>
+                      </FormControl>
+                    </div>
                   </FormControl>
                 </div>
                 <div className="button-div">
