@@ -25,13 +25,16 @@ import {
   MeasureGoal,
   DataCollectionType,
   OnboardingType,
+  OnboardingDescription,
 } from "../domain/CalculateTotalFinancialPlan"
 
 let companyInfo = CompanyDescription.MULTINATIONAL
+let onboardingInfo = OnboardingDescription.NO_ONBOARDING
 
 const bindEventValueTo = (eventHandelerFn: any) => (event: any) => {
   eventHandelerFn(event.target.value)
   updateCompanyInfo(event.target.value)
+  updateOnboardingInfo(event.target.value)
 }
 
 const updateCompanyInfo = (eventValue: any) => {
@@ -43,6 +46,24 @@ const updateCompanyInfo = (eventValue: any) => {
   }
   if (eventValue === CompanyType.COMPANY) {
     companyInfo = CompanyDescription.COMPANY
+  }
+}
+
+const updateOnboardingInfo = (eventValue: any) => {
+  if (eventValue === OnboardingType.NO_ONBOARDING) {
+    onboardingInfo = OnboardingDescription.NO_ONBOARDING
+  }
+  if (eventValue === OnboardingType.THEORY_OF_CHANGE) {
+    onboardingInfo = OnboardingDescription.THEORY_OF_CHANGE
+  }
+  if (eventValue === OnboardingType.GROUP_WEBINAR) {
+    onboardingInfo = OnboardingDescription.GROUP_WEBINAR
+  }
+  if (eventValue === OnboardingType.INDIVIDUAL_WEBINAR) {
+    onboardingInfo = OnboardingDescription.INDIVIDUAL_WEBINAR
+  }
+  if (eventValue === OnboardingType.CUSTOMIZED) {
+    onboardingInfo = OnboardingDescription.CUSTOMIZED
   }
 }
 
@@ -150,7 +171,7 @@ const Home = () => {
                     <h3>Háblanos un poco de tu organización, ¿cómo te defines?</h3>
                   </div>
                   <div className="question">
-                    <div className="selector1">
+                    <div className="selector-with-info">
                       <InputLabel>Tu empresa es...</InputLabel>
                       <FormControl>
                         <Select
@@ -244,36 +265,43 @@ const Home = () => {
                       }}
                     />
                   </div>
-                  <div className="selector">
-                    <InputLabel>
-                      Ofrecemos diferentes métodos para hacer el diseño de tu medición, unos más
-                      personalizados que otros, ¿cuál te gustaría?
-                    </InputLabel>
-                    <FormControl>
-                      <Select
-                        id="onboardingType"
-                        value={onboardingType}
-                        onChange={bindEventValueTo(setOnboardingType)}
-                      >
-                        <MenuItem value={OnboardingType.NO_ONBOARDING}>Sin Onboarding</MenuItem>
-                        <MenuItem value={OnboardingType.THEORY_OF_CHANGE}>
-                          Diseño Teoría de Cambio
-                        </MenuItem>
-                        <MenuItem value={OnboardingType.GROUP_WEBINAR}>
-                          Webinar Grupal - Trabajarás con otras empresas creando tu medición
-                        </MenuItem>
-                        <MenuItem value={OnboardingType.INDIVIDUAL_WEBINAR}>
-                          Webinar Individual
-                        </MenuItem>
-                        <MenuItem value={OnboardingType.CUSTOMIZED}>
-                          Personalizado - Un consultor dedicado para tus necesidades
-                        </MenuItem>
-                      </Select>
-                      <FormHelperText>
-                        El proceso de onboarding con nuestros consultores te ayudara a conseguir la
-                        mejor medición para tu proyecto
-                      </FormHelperText>
-                    </FormControl>
+                  <div className="question">
+                    <div className="selector-with-info">
+                      <InputLabel>
+                        Ofrecemos diferentes métodos para hacer el diseño de tu medición, unos más
+                        personalizados que otros, ¿cuál te gustaría?
+                      </InputLabel>
+                      <FormControl>
+                        <Select
+                          id="onboardingType"
+                          value={onboardingType}
+                          onChange={bindEventValueTo(setOnboardingType)}
+                        >
+                          <MenuItem value={OnboardingType.NO_ONBOARDING}>
+                            Sin Diseño de Medición
+                          </MenuItem>
+                          <MenuItem value={OnboardingType.THEORY_OF_CHANGE}>
+                            Diseño de Teoría del Cambio
+                          </MenuItem>
+                          <MenuItem value={OnboardingType.GROUP_WEBINAR}>
+                            Webinar Grupal - Trabajarás con otras empresas creando tu medición
+                          </MenuItem>
+                          <MenuItem value={OnboardingType.INDIVIDUAL_WEBINAR}>
+                            Webinar Individual
+                          </MenuItem>
+                          <MenuItem value={OnboardingType.CUSTOMIZED}>
+                            Personalizado - Un consultor dedicado para tus necesidades
+                          </MenuItem>
+                        </Select>
+                        <FormHelperText>
+                          El proceso de onboarding con nuestros consultores te ayudara a conseguir
+                          la mejor medición para tu proyecto
+                        </FormHelperText>
+                      </FormControl>
+                    </div>
+                    <div className="info-section-onboarding">
+                      <p>{onboardingInfo}</p>
+                    </div>
                   </div>
                 </div>
                 <div className="survey-section">
@@ -300,7 +328,7 @@ const Home = () => {
                   </div>
                   <div className="selector">
                     <InputLabel>
-                      ¿Dirías que tus beneficiarios pertenecen cuál de estas categorías?
+                      ¿Dirías que tus beneficiarios pertenecen a cuál de estas categorías?
                     </InputLabel>
                     <FormControl>
                       <Select
@@ -330,7 +358,11 @@ const Home = () => {
                 </div>
 
                 <div className="survey-section">
-                  <h3>¿Cómo quieres recibir tus reportes y cuántos al año? </h3>
+                  <h3>
+                    Poseemos distintos tipos de reportes, los cuales puedes escoger a tu
+                    conveniencia según tus necesidades. ¿Cuáles y cuántos crees que te podrían
+                    ayudar a lograr tus metas?{" "}
+                  </h3>
                   <div className="selector">
                     <InputLabel>
                       Informe externo con diseño - Formato ebook con manual de marca para descarga
@@ -513,13 +545,26 @@ const Home = () => {
             display: flex;
           }
           .info-section {
+            margin-left: -20%;
+            padding: 2%;
             float: right;
-            width: 30%;
-            height: 200px;
-            background-color: grey;
+            width: 25%;
+            height: 190px;
+            background: linear-gradient(127.45deg, #d0c9c8 31.19%, rgba(240, 237, 237, 0) 155.12%);
+            border-radius: 4%;
+            font-style: italic;
+          }
+          .info-section-onboarding {
+            margin-left: 5%;
+            padding: 2%;
+            float: right;
+            width: 25%;
+            height: 190px;
+            background: linear-gradient(127.45deg, #d0c9c8 31.19%, rgba(240, 237, 237, 0) 155.12%);
+            border-radius: 4%;
+            font-style: italic;
           }
           .section-title {
-            background-color: #f0eded;
             padding: 0.5%;
             marging: 1%;
           }
@@ -547,7 +592,7 @@ const Home = () => {
           .description {
             text-align: center;
           }
-          .selector1 {
+          .selector-with-info {
             float: left;
             margin-top: 20px;
             width: 70%;

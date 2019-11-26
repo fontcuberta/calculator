@@ -8,6 +8,13 @@ export enum CompanyDescription {
   COMPANY = "Empresa nacional: empresas pequeñas, medianas o grandes todavía en desarrollo o crecimiento.",
   MULTINATIONAL = "Empresas grandes (retailers, bancos, Productos de consumo, entre otras) que poseen gran cantidad de grupos de interés nacionales e internacionales.",
 }
+export enum OnboardingDescription {
+  NO_ONBOARDING = "No necesitas ningún apoyo en la planificación de tu medición en nuestra plataforma",
+  THEORY_OF_CHANGE = "Empresa nacional: empresas pequeñas, medianas o grandes todavía en desarrollo o crecimiento.",
+  GROUP_WEBINAR = "El proceso del diseño de la medición se realiza en conjunto con otras organizaciones a través de webinars.",
+  INDIVIDUAL_WEBINAR = "Realizas el proceso de medición individualmente siguiendo webinars online no personalizados.",
+  CUSTOMIZED = "El proceso del diseño de la medición se realiza uno a uno contigo con un consultor asignado para tus necesidades",
+}
 
 export enum MeasureGoal {
   PUBLIC_POLICY = "Influir en políticas públicas",
@@ -110,6 +117,9 @@ function getTotalDataCollectionPrice(
     } else {
       return numberOfProjects * (0.03 * (numberOfBeneficiaries - 500) + 600)
     }
+  }
+  if (dataCollectionType === DataCollectionType.OFFLINE) {
+    return 0 // Data Collection on paper is included in the platform total
   }
   throw new Error(`getTotalDataCollectionPrice not implemented for ${dataCollectionType}`)
 }
