@@ -276,7 +276,7 @@ const Home = () => {
                   </div>
                   <div className="question">
                     <div className="selector-with-info">
-                      <InputLabel>
+                      <InputLabel className="input-label">
                         Ofrecemos diferentes métodos para hacer el diseño de tu medición, unos más
                         personalizados que otros, ¿cuál te gustaría?
                       </InputLabel>
@@ -302,10 +302,6 @@ const Home = () => {
                             Personalizado - Un consultor dedicado para tus necesidades
                           </MenuItem>
                         </Select>
-                        <FormHelperText>
-                          El proceso de onboarding con nuestros consultores te ayudara a conseguir
-                          la mejor medición para tu proyecto
-                        </FormHelperText>
                       </FormControl>
                     </div>
                     <div className="info-section">
@@ -557,10 +553,17 @@ const Home = () => {
                           <MenuItem value={CustomerCountry.COSTA_RICA}>Costa Rica</MenuItem>
                           <MenuItem value={CustomerCountry.CHILE}>Chile</MenuItem>
                           <MenuItem value={CustomerCountry.ECUADOR}>Ecuador</MenuItem>
+                          <MenuItem value={CustomerCountry.EL_SALVADOR}>El Salvador</MenuItem>
+                          <MenuItem value={CustomerCountry.ESPANA}>España</MenuItem>
+                          <MenuItem value={CustomerCountry.GUATEMALA}>Guatemala</MenuItem>
+                          <MenuItem value={CustomerCountry.HONDURAS}>Honduras</MenuItem>
                           <MenuItem value={CustomerCountry.MEXICO}>México</MenuItem>
                           <MenuItem value={CustomerCountry.PANAMA}>Panamá</MenuItem>
                           <MenuItem value={CustomerCountry.PARAGUAY}>Paraguay</MenuItem>
                           <MenuItem value={CustomerCountry.PERU}>Perú</MenuItem>
+                          <MenuItem value={CustomerCountry.REPUBLICA_DOMINICANA}>
+                            República Dominicana
+                          </MenuItem>
                           <MenuItem value={CustomerCountry.URUGUAY}>Uruguay</MenuItem>
                           <MenuItem value={CustomerCountry.VENEZUELA}>Venezuela</MenuItem>
                         </Select>
@@ -584,6 +587,7 @@ const Home = () => {
         <style jsx>{`
           .input-label {
             margin-top: 2%;
+            margin-bottom: 1.5%;
           }
           .question {
             display: flex;
