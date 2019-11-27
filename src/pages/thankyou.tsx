@@ -46,12 +46,14 @@ const Thankyou = () => {
         <React.Fragment>
           <Navigator />
           <CssBaseline />
-          <Container maxWidth="md">
-            <h1>¡Muchas gracias por usar el Cotizador de Cuantix!</h1>
-            <h3>
+          <Container maxWidth="sm">
+            <div className="header">
+              <h1>¡Muchas gracias por usar el Cotizador de Cuantix!</h1>
+            </div>
+            <h2>
               Estamos encantados de ayudarte a crear tu primer presupuesto. A continuación, revisa
-              tu correo electrónico para que veas tu presupuesto
-            </h3>
+              el correo electrónico que nos suministraste para verlo.
+            </h2>
             <h5>
               Si necesitas ponerte en contacto con nosotros, por favor, envía un correo a{" "}
               <a href="mailto: giselle.gil@icuantix.com">giselle.gil@icuantix.com</a>
@@ -59,7 +61,14 @@ const Thankyou = () => {
           </Container>
         </React.Fragment>
 
-        <style jsx>{``}</style>
+        <style jsx>{`
+          .header {
+            margin-top: 10%;
+          }
+          h1 {
+            text-align: center;
+          }
+        `}</style>
       </MuiThemeProvider>
     </div>
   )
