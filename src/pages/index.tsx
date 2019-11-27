@@ -512,7 +512,6 @@ const Home = () => {
                       value={customerName}
                       onChange={bindEventValueTo(setCustomerName)}
                       required
-                      autoFocus
                       margin="normal"
                     />
                     <TextField
