@@ -1,21 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import Navigator from "../components/Navigator"
 import Head from "next/head"
-import {
-  CssBaseline,
-  Container,
-  TextField,
-  createMuiTheme,
-  MuiThemeProvider,
-} from "@material-ui/core"
-import {
-  InputLabel,
-  MenuItem,
-  FormHelperText,
-  FormControl,
-  Select,
-  Button,
-} from "@material-ui/core"
+import { CssBaseline, Container, createMuiTheme, MuiThemeProvider } from "@material-ui/core"
 
 const THEME = createMuiTheme({
   typography: {

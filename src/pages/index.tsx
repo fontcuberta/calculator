@@ -111,12 +111,6 @@ const Home = () => {
     .map((_, i) => i + 1)
     .map(i => ({ value: i, label: i.toString() }))
 
-  const marksBeneficiaries = new Array(11)
-    .fill(0)
-    .map((_, i) => i * 100)
-    .slice(1)
-    .map(i => ({ value: i, label: i.toString() }))
-
   const handleSubmit = () => {
     const financialPlanAndUser: FinancialPlanAndUser = {
       impactMeasurementFinancialPlan: {
@@ -158,10 +152,12 @@ const Home = () => {
         </Head>
         <React.Fragment>
           <Navigator />
+          <div className="banner">
+            <img src="banner.jpg" alt="" />
+          </div>
           <CssBaseline />
           <Container maxWidth="md">
             <div className="hero">
-              <h1 className="title">Cotizador Cuantix</h1>
               <h2>
                 ¿Quieres saber cuánto podría costar tu medición? Contesta algunas preguntas y te
                 enviaremos un presupuesto estimado.
@@ -585,6 +581,12 @@ const Home = () => {
         </React.Fragment>
 
         <style jsx>{`
+          .banner {
+            heigth: auto;
+          }
+          .banner img {
+            width: 100%;
+          }
           .input-label {
             margin-top: 2%;
             margin-bottom: 1.5%;
