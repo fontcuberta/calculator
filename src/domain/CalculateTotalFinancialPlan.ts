@@ -114,6 +114,7 @@ export function calculateTotalFinancialPlan(
     impactMeasurementFinancialPlan.numberOfProjects,
     impactMeasurementFinancialPlan.numberOfBeneficiaries,
     impactMeasurementFinancialPlan.dataCollectionType,
+    impactMeasurementFinancialPlan.companyType,
   )
 
   const totalReportingPrice =
@@ -136,23 +137,33 @@ export function calculateTotalFinancialPlan(
   ]
 }
 
-function getTotalDataCollectionPrice(
+export function getTotalDataCollectionPrice(
   numberOfProjects: number,
   numberOfBeneficiaries: number,
   dataCollectionType: DataCollectionType,
+  companyType: CompanyType,
 ) {
+  const TOTAL_COORDINATION = companyType === CompanyType.MULTINATIONAL_CORPORATION ? 500 : 0
+  const WHATSAPP_MESSAGE_COST = 0.05
+  const ESTIMATED_MSGGES_FOR_BENEFICIARY = 5
   if (dataCollectionType === DataCollectionType.WHATSAPP) {
     if (numberOfBeneficiaries <= 100) {
-      return numberOfProjects * 600
+      return numberOfProjects * 600 + TOTAL_COORDINATION
     } else {
-      return numberOfProjects * (0.05 * 5 * (numberOfBeneficiaries - 100) + 600)
+      return (
+        numberOfProjects *
+          (WHATSAPP_MESSAGE_COST *
+            (ESTIMATED_MSGGES_FOR_BENEFICIARY * (numberOfBeneficiaries - 100)) +
+            600) +
+        TOTAL_COORDINATION
+      )
     }
   }
   if (dataCollectionType === DataCollectionType.OFFLINE) {
     return 0 // Data Collection on paper is included in the platform total
   }
   if (dataCollectionType === DataCollectionType.CALL) {
-    return numberOfBeneficiaries * 15
+    return numberOfBeneficiaries * 2 + TOTAL_COORDINATION
   }
   throw new Error(`getTotalDataCollectionPrice not implemented for ${dataCollectionType}`)
 }
