@@ -78,7 +78,6 @@ export type ImpactMeasurementFinancialPlan = {
 
 const PROJECT_UNIT_PRICE = 1200
 const DASHBOARD_UNIT_PRICE = 250
-const EXPECTED_DASHBOARDS_SELECTED = 1
 const EBOOK_REPORT_UNIT_PRICE = 2500
 const PDF_REPORT_UNIT_PRICE = 1800
 const READABLE_REPORT_UNIT_PRICE = 1500
@@ -103,13 +102,11 @@ export function calculateTotalFinancialPlan(
   const totalOnboardingPrice = organizationBasePrice + onboardingBasePrice
 
   const projectUnitPrice = PROJECT_UNIT_PRICE
-  const dashboardUnitPrice = DASHBOARD_UNIT_PRICE
   const projectBasePrice = getProjectBasePrice(
     impactMeasurementFinancialPlan.numberOfProjects,
     projectUnitPrice,
   )
-  const dashboardBasePrice = EXPECTED_DASHBOARDS_SELECTED * dashboardUnitPrice
-  const totalPlatformPrice = projectBasePrice + dashboardBasePrice
+  const totalPlatformPrice = projectBasePrice + DASHBOARD_UNIT_PRICE
   const totalDataCollectionPrice = getTotalDataCollectionPrice(
     impactMeasurementFinancialPlan.numberOfProjects,
     impactMeasurementFinancialPlan.numberOfBeneficiaries,

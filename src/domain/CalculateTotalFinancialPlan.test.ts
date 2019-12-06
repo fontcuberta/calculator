@@ -132,7 +132,7 @@ describe("GetTotalDataCollectionPrice", () => {
 })
 
 describe("CalculateTotalFinancialPlan", () => {
-  xit("calculates total financial plan", () => {
+  it("calculates total financial plan", () => {
     const customerData = {
       companyType: CompanyType.MULTINATIONAL_CORPORATION,
       measureGoal: MeasureGoal.INVESTMENT_DECISION,
@@ -150,9 +150,7 @@ describe("CalculateTotalFinancialPlan", () => {
     }
 
     // This number is extracted from the calculations of the "Cotizador de precios" excel
-    const totalFinancialPlan = 49509
-    console.log(calculateTotalFinancialPlan(customerData)[4])
-
+    const totalFinancialPlan = 50059
     expect(calculateTotalFinancialPlan(customerData)[4]).toEqual(totalFinancialPlan)
   })
   xit("calculates the lower and upper limits of the financial plan", () => {
