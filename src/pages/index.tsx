@@ -131,6 +131,7 @@ const Home = () => {
       user: {
         country: customerCountry,
         email: customerEmail,
+        phone: customerPhone,
         firstname: customerName,
         lastname: customerLastname,
       },
