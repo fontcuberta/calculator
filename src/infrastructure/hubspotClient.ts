@@ -12,6 +12,7 @@ type User = {
   companyType: string
   lastname: string
   firstname: string
+  phone: string
   email: string
   country: string
 }
@@ -35,6 +36,7 @@ export class HubspotClient {
       firstname: user.firstname,
       email: user.email,
       country: user.country,
+      phone: user.phone,
       company_type: user.companyType,
     })
 
@@ -56,6 +58,7 @@ export class HubspotClient {
             { property: "lastname", value: user.lastname },
             { property: "firstname", value: user.firstname },
             { property: "email", value: user.email },
+            { property: "phone", value: user.phone },
             { property: "country", value: user.country },
             { property: "company_type", value: user.companyType },
           ],
