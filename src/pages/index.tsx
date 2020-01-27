@@ -284,19 +284,19 @@ const Home = () => {
                           onChange={bindEventValueTo(setOnboardingType)}
                         >
                           <MenuItem value={OnboardingType.NO_ONBOARDING}>
-                            Sin Diseño de Medición
+                            Cotizar solo el software de Cuantix
                           </MenuItem>
                           <MenuItem value={OnboardingType.THEORY_OF_CHANGE}>
-                            Diseño de Teoría del Cambio
+                            Diseño de indicadores y Teoría del Cambio
                           </MenuItem>
                           <MenuItem value={OnboardingType.GROUP_WEBINAR}>
-                            Webinar Grupal - Trabajarás con otras empresas creando tu medición
+                            Diseño de medición grupal (fechas fijas)
                           </MenuItem>
                           <MenuItem value={OnboardingType.INDIVIDUAL_WEBINAR}>
-                            Webinar Individual
+                            Webinars y sesiones con un consultor
                           </MenuItem>
                           <MenuItem value={OnboardingType.CUSTOMIZED}>
-                            Personalizado - Un consultor dedicado para tus necesidades
+                            Sesiones 100% personalizadas. Consultor dedicado
                           </MenuItem>
                         </Select>
                       </FormControl>
