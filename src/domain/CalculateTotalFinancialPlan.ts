@@ -26,11 +26,11 @@ export enum MeasureGoal {
 }
 
 export enum OnboardingType {
-  CUSTOMIZED = "Personalizado",
-  THEORY_OF_CHANGE = "Diseño Teoría de Cambio",
-  GROUP_WEBINAR = "Webinar Grupal",
-  INDIVIDUAL_WEBINAR = "Webinar Individual",
-  NO_ONBOARDING = "Sin Onboarding",
+  CUSTOMIZED = "Sesiones 100% personalizadas. Consultor dedicado",
+  THEORY_OF_CHANGE = "Diseño de indicadores y Teoría del Cambio",
+  GROUP_WEBINAR = "Diseño de medición grupal (fechas fijas)",
+  INDIVIDUAL_WEBINAR = "Webinars y sesiones dedicadas con un consultor",
+  NO_ONBOARDING = "Cotizar solo el software de Cuantix",
 }
 
 export enum CustomerCountry {
