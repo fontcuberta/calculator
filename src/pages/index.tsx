@@ -24,6 +24,7 @@ import {
   CompanyDescription,
   MeasureGoal,
   DataCollectionType,
+  TermType,
   OnboardingType,
   OnboardingDescription,
   CustomerCountry,
@@ -105,6 +106,7 @@ const Home = () => {
   const [numberOfDashboardReports, setNumberOfDashboardReports] = useState(0)
   const [measureGoal, setMeasureGoal] = useState(MeasureGoal.INSIGHTS_FINDING)
   const [onboardingType, setOnboardingType] = useState(OnboardingType.NO_ONBOARDING)
+  const [termType, setTermType] = useState(TermType.SHORT_TERM)
 
   const marks = new Array(10)
     .fill(0)
@@ -134,6 +136,7 @@ const Home = () => {
         phone: customerPhone,
         firstname: customerName,
         lastname: customerLastname,
+        term: termType,
       },
     }
 
@@ -491,7 +494,29 @@ const Home = () => {
                     />
                   </div>
                 </div>
-
+                <div className="survey-section">
+                  <div className="section-title">
+                    <img src="icons/time.svg" />
+                    <h2>Estimación de tiempos</h2>
+                  </div>
+                  <div className="selector">
+                    <InputLabel>
+                      ¿Cuándo estimas comenzar la implementación el proyecto de medición de impacto?
+                    </InputLabel>
+                    <FormControl>
+                      <Select
+                        id="termType"
+                        value={termType}
+                        onChange={bindEventValueTo(setTermType)}
+                      >
+                        <MenuItem value={TermType.SHORT_TERM}>En menos de 3 meses</MenuItem>
+                        <MenuItem value={TermType.MEDIUM_TERM}>En menos de 6 meses</MenuItem>
+                        <MenuItem value={TermType.LONG_TERM}>En este año</MenuItem>
+                        <MenuItem value={TermType.NOT_SURE}>Aún no lo hemos definido</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </div>
+                </div>
                 <div className="survey-section">
                   <div className="section-title">
                     <img src="icons/sending.svg" />

@@ -10,6 +10,7 @@ export type User = {
   lastname: string
   email: string
   phone: string
+  term: string
 }
 
 export type FinancialPlanAndUser = {
@@ -62,6 +63,7 @@ export class FinancialPlanService {
         lastname: financialPlanAndUser.user.lastname,
         email: financialPlanAndUser.user.email,
         phone: financialPlanAndUser.user.phone,
+        term: financialPlanAndUser.user.term,
       },
       {
         onboardingTotalPrice,

@@ -60,6 +60,13 @@ export enum DataCollectionType {
   OFFLINE = "Tengo contacto en persona con mis beneficiarios y puedo levantar información en campo, o son jóvenes o niños y debo levantar información en papel",
 }
 
+export enum TermType {
+  SHORT_TERM = "En menos de 3 meses",
+  MEDIUM_TERM = "En menos de 6 meses",
+  LONG_TERM = "En este año",
+  NOT_SURE = "Aún no lo hemos definido",
+}
+
 export type ImpactMeasurementFinancialPlan = {
   companyType: CompanyType
   measureGoal: MeasureGoal

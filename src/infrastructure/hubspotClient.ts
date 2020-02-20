@@ -15,6 +15,7 @@ type User = {
   phone: string
   email: string
   country: string
+  term: string
 }
 
 export class HubspotClient {
@@ -38,6 +39,7 @@ export class HubspotClient {
       country: user.country,
       phone: user.phone,
       company_type: user.companyType,
+      term: user.term,
     })
 
     return fetch(
@@ -61,6 +63,7 @@ export class HubspotClient {
             { property: "phone", value: user.phone },
             { property: "country", value: user.country },
             { property: "company_type", value: user.companyType },
+            { property: "project_term", value: user.term },
           ],
         }),
       },
